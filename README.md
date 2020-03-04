@@ -11,6 +11,7 @@
 - has_mny :items
 - has_many :dealings
 - has_one :profile
+- has_many :addresses
 - has_many :cards
 
 
@@ -23,12 +24,7 @@
 |first_name_kana|string|null: false|
 |last_name_kana|string|null: false|
 |tell|integer|
-|postal_code|integer|null: false|
-|prefecture|integer|null: false|
-|city|string|null: false|
-|address_number|string|null: false|
-|building|string|
-|introduction|text|
+|introduce|text|
 |avatar|string|
 |birthday|date|null: false|
 |user|references|null: false, foreign_key: true|
@@ -36,6 +32,21 @@
 ### Association
 
 - belongs_to :user
+
+
+## addressesテーブル
+|Column|Type|Options|
+|------|----|-------|
+|postal_code|integer|null: false|
+|prefecture|integer|null: false|
+|city|string|null: false|
+|address_number|string|null: false|
+|building|string|
+
+### Association
+
+- belongs_to :user
+
 
 
 ## itemsテーブル
@@ -106,5 +117,3 @@
 ### Association
 
 - belongs_to :user
-
-
