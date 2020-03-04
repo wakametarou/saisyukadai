@@ -11,7 +11,7 @@
 - has_many :items
 - has_many :dealings
 - has_one :profile
-- has_one :addresses
+- has_one :addresse
 - has_many :cards
 
 
