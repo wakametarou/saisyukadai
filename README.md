@@ -49,7 +49,7 @@
 
 
 
-## item_itemsテーブル
+## itemsテーブル
 
 |Column|Type|Options|
 |------|----|-------|
@@ -65,13 +65,13 @@
 
 ### Association
 
-- has_many :images
+- has_many :item_images
 - has_one :dealing
 - belongs_to :user
 - belongs_to :category
 
 
-## imagesテーブル
+## item_imagesテーブル
 
 |Column|Type|Options|
 |------|----|-------|
@@ -80,7 +80,7 @@
 
 ### Association
 
-- belongs_to :item
+- belongs_to :item, dependent: :destroy
 
 
 ## categorysテーブル
