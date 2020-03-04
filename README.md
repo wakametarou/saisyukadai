@@ -8,10 +8,10 @@
 
 ### Association
 
-- has_mny :items
+- has_many :items
 - has_many :dealings
 - has_one :profile
-- has_many :addresses
+- has_one :addresses
 - has_many :cards
 
 
@@ -49,7 +49,7 @@
 
 
 
-## itemsテーブル
+## item_itemsテーブル
 
 |Column|Type|Options|
 |------|----|-------|
