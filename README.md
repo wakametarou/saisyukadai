@@ -42,6 +42,8 @@
 |city|string|null: false|
 |address_number|string|null: false|
 |building|string|
+|user|references|null: false, foreign_key: true|
+
 
 ### Association
 
