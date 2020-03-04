@@ -65,7 +65,7 @@
 
 ### Association
 
-- has_many :item_images
+- has_many :item_images, dependent: :destroy
 - has_one :dealing
 - belongs_to :user
 - belongs_to :category
@@ -80,7 +80,7 @@
 
 ### Association
 
-- belongs_to :item, dependent: :destroy
+- belongs_to :item
 
 
 ## categorysテーブル
