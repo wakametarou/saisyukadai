@@ -1,0 +1,36 @@
+.header
+  .header__inner
+    .main-header
+      %h1.icon 
+        = link_to image_tag('logo.png', class: "icon__image"), '#'
+      .search-box
+        .form
+          %input{type: "text",class: "search-box__text", placeholder: "キーワードから探す"}
+          %button{type: "submit",class: "submit-btn", value: "Send"}
+            .search-button
+              = image_tag('search.png', class: "search-button__image")
+
+    .nav
+      %ul.list-left 
+        %li.list-left__first
+          = link_to "#"
+        %li.list-left__last
+          = link_to "#"
+      %ul.list-right
+        %li.list-right__login
+          = link_to "#"
+        %li.list-right__new
+          = link_to "#"
+.main
+  %section.main-vizual
+    .content
+      %h2.content__subtitle
+      %p.content__text
+      .content__btn
+        =link_to "#"
+        =link_to "#"
+  %section.introduction
+    %h2.subtitle
+    %ul.lists
+     
+
