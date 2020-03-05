@@ -23,11 +23,11 @@
 |last_name|string|null: false|
 |first_name_kana|string|null: false|
 |last_name_kana|string|null: false|
-|tell|integer|
+|tell|integer|unique: true|
 |introduce|text|
 |avatar|string|
 |birthday|date|null: false|
-|user|references|null: false, foreign_key: true|
+|user_id|integer|null: false, foreign_key: true|
 
 ### Association
 
@@ -42,7 +42,7 @@
 |city|string|null: false|
 |address_number|string|null: false|
 |building|string|
-|user|references|null: false, foreign_key: true|
+|user_id|integer|null: false, foreign_key: true|
 
 
 ### Association
@@ -62,8 +62,8 @@
 |delivery_tax_payer|integer|null: false|
 |delivery_from|integer|null: false|
 |delivery_days|integer|null: false|
-|category|references|null: false, foreign_key: true|
-|user|references|null: false, foreign_key: true|
+|category|integer|null: false, foreign_key: true|
+|user_id|integer|null: false, foreign_key: true|
 
 ### Association
 
@@ -78,7 +78,7 @@
 |Column|Type|Options|
 |------|----|-------|
 |image|string|null: false|
-|item|references|foreign_key: true|
+|item|integer|foreign_key: true|
 
 ### Association
 
@@ -102,8 +102,8 @@
 |Column|Type|Options|
 |------|----|-------|
 |phase|boolean|defoult: false|
-|item|references|null: false, foreign_key: true|
-|user|references|null: false, foreign_key: true|
+|item|integer|null: false, foreign_key: true|
+|user_id|integer|null: false, foreign_key: true|
 
 ### Association
 
@@ -113,7 +113,7 @@
 
 ## cardsテーブル
 
-|user|references|null: false, foreign_key: true|
+|user_id|integer|null: false, foreign_key: true|
 |customer_id|string|
 
 ### Association
