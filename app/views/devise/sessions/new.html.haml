@@ -9,15 +9,11 @@
         .email-field
           .email-field__text
             = f.label :メールアドレス, class: "bold"
-            %span.require
-              必須
           %br/
           = f.email_field :email, autofocus: true, autocomplete: "email"
         .password-field
           .password-field__text
             = f.label :パスワード, class: "bold"
-            %span.require
-              必須
           %br/
           = f.password_field :password, autocomplete: "current-password"
         - if devise_mapping.rememberable?
