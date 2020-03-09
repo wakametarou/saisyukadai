@@ -8,14 +8,14 @@
       = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
         .email-field
           .email-field__text
-            = f.label :メールアドレス
+            = f.label :メールアドレス, class: "bold"
             %span.require
               必須
           %br/
           = f.email_field :email, autofocus: true, autocomplete: "email"
         .password-field
           .password-field__text
-            = f.label :パスワード
+            = f.label :パスワード, class: "bold"
             %span.require
               必須
           %br/

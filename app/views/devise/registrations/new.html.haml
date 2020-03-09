@@ -9,33 +9,75 @@
         = render "devise/shared/error_messages", resource: resource
         .nickname-field
           .nickname-field__text
-            = f.label :ニックネーム
+            = f.label :ニックネーム, class: "bold"
             %span.require
               必須
           %br/
           = f.text_field :nickname, autofocus: true, autocomplete: "nickname"
         .email-field
           .email-field__text
-            = f.label :メールアドレス
+            = f.label :メールアドレス, class: "bold"
             %span.require
               必須
           %br/
           = f.email_field :email, autofocus: true, autocomplete: "email"
         .password-field
           .password-field__text
-            = f.label :パスワード
+            = f.label :パスワード, class: "bold"
             - if @minimum_password_length
               %em
-                (#{@minimum_password_length}文字以上)
+                -# (#{@minimum_password_length}文字以上)
+                (7文字以上)
             %span.require
               必須
           %br/
           = f.password_field :password, autocomplete: "new-password"
         .confimation-field
           .confimation-field__text
-            = f.label :パスワード確認
+            = f.label :パスワード確認, class: "bold"
           %br/
           = f.password_field :password_confirmation, autocomplete: "new-password"
+        .user-verification
+          %H3.clearfix
+            本人確認
+          %p
+            安心・安全にご利用いただくために、お客さまの本人情報の登録にご協力ください。他のお客さまに公開されることはありません。
+        .name-field
+          .name-field__text.clearfix
+            = f.label :お名前（全角）, class: "bold"
+            %span.require
+              必須
+          %br/
+          .name-field__flex.clearfix
+            .name-field__flex--left
+              = f.text_field :nickname
+            .name-field__flex--right
+              = f.text_field :nickname
+        .name-kana-field
+          .name-kana-field__text.clearfix
+            = f.label :お名前カナ（全角）, class: "bold"
+            %span.require
+              必須
+          %br/
+          .name-kana-field__flex.clearfix
+            .name-kana-field__flex--left
+              = f.text_field :nickname
+            .name-kana-field__flex--right
+              = f.text_field :nickname
+        .birthday-field
+          .birthday-field__text
+            = f.label :生年月日, class: "bold"
+            %span.require
+              必須
+          .birthday-select
+            -# = f.select :nickname, [["--",""],["2020", 2020]]
+            -# != sprintf(f.date_select(:password, prefix:'birthday',with_css_classes:'XXXXX', prompt:"--",use_month_numbers:true, start_year:Time.now.year, end_year:1900, date_separator:'%s'),'年','月')+'日'
+            %input.birthday{type: "date", value: "1980-01-01"}
+        %p.form-info
+          ※ 本人情報は正しく入力してください。会員登録後、修正するにはお時間を頂く場合があります。
+
+              
+
         .actions
           = f.submit "アカウント作成"
       %p#link-signin
