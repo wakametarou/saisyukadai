@@ -9,8 +9,9 @@
   &__icon{
     height: 120px;
     display: flex;
-    padding-left: 600px;
+    // padding-left: 600px;
     align-items: center;
+    justify-content: center;
     &__image{
       height: 60px;
       width: 210px;
@@ -18,7 +19,8 @@
   }
   &__form{
     height: 100%;
-    width: calc(100% - 700px);
+    // width: calc(100% - 700px);
+    width: 50%;
     background-color: white;
     margin: 0 auto;
     &--title{
