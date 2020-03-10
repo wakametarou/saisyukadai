@@ -26,7 +26,6 @@
             = f.label :パスワード, class: "bold"
             - if @minimum_password_length
               %em
-                -# (#{@minimum_password_length}文字以上)
                 (7文字以上)
             %span.require
               必須
@@ -70,8 +69,6 @@
             %span.require
               必須
           .birthday-select
-            -# = f.select :nickname, [["--",""],["2020", 2020]]
-            -# != sprintf(f.date_select(:password, prefix:'birthday',with_css_classes:'XXXXX', prompt:"--",use_month_numbers:true, start_year:Time.now.year, end_year:1900, date_separator:'%s'),'年','月')+'日'
             %input.birthday{type: "date", value: "1980-01-01"}
         %p.form-info
           ※ 本人情報は正しく入力してください。会員登録後、修正するにはお時間を頂く場合があります。
@@ -81,7 +78,6 @@
         .actions
           = f.submit "アカウント作成"
       %p#link-signin
-        -# = render "devise/shared/links"
         = link_to 'サインインの方はこちら', new_user_session_path
   .user-new__footer
   
