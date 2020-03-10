@@ -1,0 +1,27 @@
+.user-new   
+  %h1.user-new__icon
+    = link_to image_tag('logo.png', class: "user-new__icon__image"), "#"
+  .user-new__form
+    .user-new__form--title
+      %h2 サインイン
+    .user-new__form--for
+      = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+        .email-field
+          .email-field__text
+            = f.label :メールアドレス, class: "bold"
+          %br/
+          = f.email_field :email, autofocus: true, autocomplete: "email"
+        .password-field
+          .password-field__text
+            = f.label :パスワード, class: "bold"
+          %br/
+          = f.password_field :password, autocomplete: "current-password"
+        - if devise_mapping.rememberable?
+        .actions
+          = f.submit "サインイン"
+      #link-signup
+        = link_to '新規登録の方はこちら', new_user_registration_path
+      #link-forgetpassword
+        = link_to 'パスワードをお忘れの方', new_user_password_path
+  .user-new__footer
+
