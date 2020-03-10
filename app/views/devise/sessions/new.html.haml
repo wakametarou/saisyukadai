@@ -16,7 +16,6 @@
             = f.label :パスワード, class: "bold"
           %br/
           = f.password_field :password, autocomplete: "current-password"
-        - if devise_mapping.rememberable?
         .actions
           = f.submit "サインイン"
       #link-signup
