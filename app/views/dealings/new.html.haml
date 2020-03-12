@@ -1,58 +1,58 @@
-%body
-  %h1.user-new__icon
-    = link_to image_tag('logo.png', class: "user-new__icon__image"), "#"
-  %main.single-main
-    %section.container
-      %h2.head
-        購入内容の確認
-      %section.item
-        .inner
-          .item-box
-            %h3.item-image
-              = image_tag("a007.png", class: "buy-image")
-            .item-data
-              %p.item-name
-                商品名
-              %p.item-price
+
+%h1.user-new__icon
+  = link_to image_tag('logo.png', class: "user-new__icon__image"), "#"
+%main.single-main
+  %section.container
+    %h2.head
+      購入内容の確認
+    %section.item
+      .inner
+        .item-box
+          %h3.item-image
+            = image_tag("a007.png", class: "buy-image")
+          .item-data
+            %p.item-name
+              商品名
+            %p.item-price
+              %span
+                ¥ 300円
+              %span.item-fee
+                (税込) 着払い
+    %section.item
+      .inner
+        %form.buy-form
+          %ul.price-table
+            %li.price-row
+              .price-label
+                支払い金額
+              .price
                 %span
-                  ¥ 300円
-                %span.item-fee
-                  (税込) 着払い
-      %section.item
-        .inner
-          %form.buy-form
-            %ul.price-table
-              %li.price-row
-                .price-label
-                  支払い金額
-                .price
-                  %span
-                    ¥ 300
-            %ul.have-point
-              %li.point-box
-                .use-point
-                  %input{type: "checkbox"}
-                  %label
-                    ポイントを使用(所持ポイント: P0)
-            %section.user-info
-              .user-inner
-                %h3
-                  支払い方法
-                = link_to "#" do
-                  %p.info-text
-                    %i.fas.fa-plus-circle
-                    %span.register
-                      登録してください
-            %section.user-info
-              .user-inner
-                %h3
-                  発送先
-                = link_to "#" do
-                  %p.info-text
-                    %i.fas.fa-plus-circle
-                    %span.register
-                      登録してください
-            %section.user-info
-              %button{type: "submit", class: "buy-btn"}
-                購入する
-  .user-new__footer
+                  ¥ 300
+          %ul.have-point
+            %li.point-box
+              .use-point
+                %input{type: "checkbox"}
+                %label
+                  ポイントを使用(所持ポイント: P0)
+          %section.user-info
+            .user-inner
+              %h3
+                支払い方法
+              = link_to "#" do
+                %p.info-text
+                  %i.fas.fa-plus-circle
+                  %span.register
+                    登録してください
+          %section.user-info
+            .user-inner
+              %h3
+                発送先
+              = link_to "#" do
+                %p.info-text
+                  %i.fas.fa-plus-circle
+                  %span.register
+                    登録してください
+          %section.user-info
+            %button{type: "submit", class: "buy-btn"}
+              購入する
+.user-new__footer

@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'dealings/new'
   get 'users/show'
   devise_for :users
   root 'items#index'
