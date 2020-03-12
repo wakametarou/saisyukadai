@@ -7,14 +7,18 @@ class User < ApplicationRecord
   validates :first_name, :last_name ,presence: true,
                 format: {
                   with: /\A(?:\p{Hiragana}|\p{Katakana}|[ー－]|[一-龠々])+\z/,
-                  message: "全角のみで入力して下さい"
+                  message: "は全角で入力して下さい"
                 }
   validates :first_name_kana, :last_name_kana, presence: true,
                 format: {
-                  with: /\A[\p{katakana} ー－&&[^ -~｡-ﾟ]]+\z/,
-                  message: "全角カタカナのみで入力して下さい"
+                  with: /\A[ァ-ヶー－]+\z/,
+                  message: "は全角カタカナで入力して下さい"
                 }
-  validates :password, presence: true, length: { minimum: 7}
+  validates :password, presence: true, length: { minimum: 7},
+                format: {
+                  with: /\A[a-z0-9]+\z/i,
+                  message: "は半角英数字で入力して下さい"
+                }
   has_many :items
   has_many :dealings
   has_one :profile
