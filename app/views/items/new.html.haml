@@ -1,0 +1,145 @@
+.user-new
+  %h1.user-new__icon
+    = link_to image_tag('logo.png', class: "user-new__icon__image"), "#"
+  .item_form
+    .item_sell
+      %h2 
+        商品出品ページ
+    .item_img
+      .item_img__label.bold
+        出品画像
+        %span.require
+          必須
+      .item_img__description
+        最大10枚までアップロードできます
+      .item_img__field 
+        %label
+          %input{type: 'file'}
+          %p
+            ドラッグ & ドロップ
+            %br/
+            または
+            %br/
+            クリックしてファイルをアップロード
+    .item_name
+      .item_name__form.bold
+        .item_name_label
+          商品名
+          %span.require
+            必須
+        %br/
+        %input{type: 'text'}
+      .item_description.bold
+        .item_name_label
+          商品の説明
+          %span.require
+            必須
+        %br
+        %input{type: 'text'}
+    .item_detail
+      .item_setumei
+        商品の詳細
+      .item_detail__category.bold
+        .item_name_label
+          カテゴリー
+          %span.require
+            必須
+        %br
+        %select
+      .item_detail__condition.bold
+        .item_name_label
+          商品の状態
+          %span.require
+            必須
+        %br
+        %select
+    .item_delivery
+      .item_setumei
+        配送について
+      .item_delivery__burden.bold
+        .item_name_label
+          配送料の負担
+          %span.require
+            必須
+        %br
+        %select
+      .item_delivery__area.bold
+        .item_name_label
+          発送元の地域
+          %span.require
+            必須
+        %br
+        %select
+      .item_delivery__days.bold
+        .item_name_label
+          発送までの日数
+          %span.require
+            必須
+        %br
+        %select
+    .item_price
+      .item_setumei
+        価格（¥300〜9,999,999）
+      .item_price__sale.bold
+        .item_name_label
+          販売価格
+          %span.require
+            必須
+        %br/
+        %input{type: 'number'}
+      .item_price__commission
+        販売手数料（10%）
+      .item_price__profit
+        販売利益
+    .btn
+      .exhibition_btn
+        %button{type: 'submit'} 出品する
+      .return_btn
+        %button{type: 'submit'} もどる
+  .footer
+    -# %ul.contents 
+    -#   %li.content 
+    -#     %h2.content__tittle
+    -#       FURIMAについて
+    -#     %ul.lists
+    -#       %li.list
+    -#         = link_to "#" do
+    -#           会社概要（運営会社）
+    -#       %li.list
+    -#         = link_to "#" do
+    -#           プライバシーポリシー
+    -#       %li.list
+    -#         = link_to "#" do
+    -#           FURIMA利用規約
+    -#       %li.list
+    -#         = link_to "#" do
+    -#           ポイントに関する特約
+        
+    -#     %li.content 
+    -#       %h2.content__tittle
+    -#         FURIMAを見る
+    -#       %ul.lists
+    -#         %li.list
+    -#           = link_to "#" do
+    -#             カテゴリー一覧
+    -#         %li.list
+    -#           = link_to "#" do
+    -#             ブランド一覧
+        
+    -#     %li.content 
+    -#       %h2.content__tittle
+    -#         ヘルプ＆ガイド
+    -#       %ul.lists
+    -#         %li.list
+    -#           = link_to "#" do
+    -#             FURIMAガイド
+    -#         %li.list
+    -#           = link_to "#" do
+    -#             FURIMAロゴ利用ガイドライン
+    -#         %li.list
+    -#           = link_to "#" do
+    -#             お知らせ
+    -# .footer__logo
+    -#   = link_to image_tag('logo-white.png', class: "logo__image"), '#'
+    -# %p
+    -#   © FURIMA
