@@ -5,7 +5,8 @@
   font-family: "Source Sans Pro", Helvetica, Arial, "游ゴシック体", "YuGothic", "メイリオ", "Meiryo", sans-serif;
   .header{
     padding: 0 60px;
-    height: 100px;
+    height: 110px;
+    background: #fff;
     &__inner{
       max-width: 1040px;
       width: 100%;
@@ -111,7 +112,6 @@
       padding: 0 60px;
       display: flex;
       align-items: center;
-      margin-top: 10px;
 
       .content{
         max-width: 1280px;
@@ -429,7 +429,7 @@
   .app-banner{
     background-image: url("bg-appBanner-pict.jpg");
     padding: 100px 40px;
-    // background-position: center;
+    background-position: center;
     background-size: cover;
     .inner{
       color: white;
@@ -483,6 +483,7 @@
               color: white;
               text-decoration: none;
               font-size: 12px;
+              line-height: 32px;
             }
           }
         }
