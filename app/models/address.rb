@@ -18,5 +18,4 @@ class Address < ApplicationRecord
                 message: "はハイフン無しの7桁の数字で入力して下さい"
               }
   belongs_to :user, optional: true
-  # belongs_to_active_hash :prefecture
 end

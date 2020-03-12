@@ -44,8 +44,6 @@
               必須
           %br/
           = f.text_field :prefecture, placeholder: "例）東京都"
-          -# = f.collection_select :prefecture_id, Prefecture.all, :id, :name, prompt: "--"
-          -# = icon('fas', 'chevron-down', class: 'prefecture-field__icon')
         .city-field
           .city-field__text
             = f.label :市区町村, class: "bold"
@@ -80,18 +78,4 @@
         .actions.padding
           = f.submit "アカウント作成"
   .user-new__footer
--#     <%= f.label :送付先指名（全角） %><br />
--#     <%= f.text_field :sendfirst_name %>
--#   </div>
 
--#   <div class="field">
--#     <%= f.label :送付先指名（全角） %><br />
--#     <%= f.text_field :sendlast_name %>
--#   </div>
-
--#   <div class="actions">
--#     <%= f.submit "Sign up" %>
--#   </div>
--# <% end %>
-
--# <%= render "devise/shared/links" %>
