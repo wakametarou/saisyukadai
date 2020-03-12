@@ -1,0 +1,97 @@
+.user-new
+  %h1.user-new__icon
+    = link_to image_tag('logo.png', class: "user-new__icon__image"), "#"
+  .user-new__form
+    .user-new__form--title
+      %h2 発送元 ・ お届け先住所設定
+    .user-new__form--for
+      = form_for @address do |f|
+        = render "devise/shared/error_messages", resource: @address 
+
+        .name-field
+          .name-field__text.clearfix
+            = f.label :お名前（全角）, class: "bold"
+            %span.require
+              必須
+          %br/
+          .name-field__flex.clearfix
+            .name-field__flex--left
+              = f.text_field :sendfirst_name
+            .name-field__flex--right
+              = f.text_field :sendlast_name
+        .name-kana-field
+          .name-kana-field__text.clearfix
+            = f.label :お名前カナ（全角）, class: "bold"
+            %span.require
+              必須
+          %br/
+          .name-kana-field__flex.clearfix
+            .name-kana-field__flex--left
+              = f.text_field :sendfirst_name_kana
+            .name-kana-field__flex--right
+              = f.text_field :sendlast_name_kana
+        .postalcode-field
+          .postalcode-field__text
+            = f.label :郵便番号（ハイフンなし7桁）, class: "bold"
+            %span.require
+              必須
+          %br/
+          = f.text_field :postal_code, onKeyUp: "AjaxZip3.zip2addr(this,'','address[prefecture]','address[city]');", placeholder: "例）1234562"
+        .prefecture-field
+          .prefecture-field__text
+            = f.label :都道府県, class: "bold"
+            %span.require
+              必須
+          %br/
+          = f.text_field :prefecture, placeholder: "例）東京都"
+          -# = f.collection_select :prefecture_id, Prefecture.all, :id, :name, prompt: "--"
+          -# = icon('fas', 'chevron-down', class: 'prefecture-field__icon')
+        .city-field
+          .city-field__text
+            = f.label :市区町村, class: "bold"
+            %span.require
+              必須
+          %br/
+          = f.text_field :city, placeholder: "例）横浜市緑区"
+        .addressnumber-field
+          .addressnumber-field__text
+            = f.label :番地, class: "bold"
+            %span.require
+              必須
+          %br/
+          = f.text_field :address_number, placeholder: "例）青山1-1-1"
+        .building-field
+          .building-field__text
+            = f.label :建物名, class: "bold"
+            %span.any
+              任意
+          %br/
+          = f.text_field :building, placeholder: "例）柳ビル103"
+        .tell-field
+          .tell-field__text
+            = f.label :電話番号, class: "bold"
+            %span.any
+              任意
+          %br/
+          = f.text_field :tell, placeholder: "例）09212345678"
+        
+
+        
+        .actions.padding
+          = f.submit "アカウント作成"
+  .user-new__footer
+-#     <%= f.label :送付先指名（全角） %><br />
+-#     <%= f.text_field :sendfirst_name %>
+-#   </div>
+
+-#   <div class="field">
+-#     <%= f.label :送付先指名（全角） %><br />
+-#     <%= f.text_field :sendlast_name %>
+-#   </div>
+
+-#   <div class="actions">
+-#     <%= f.submit "Sign up" %>
+-#   </div>
+-# <% end %>
+
+-# <%= render "devise/shared/links" %>

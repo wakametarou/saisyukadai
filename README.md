@@ -5,6 +5,11 @@
 |nickname|string|null: false|
 |email|string|null: false, unique: true|
 |password|string|null: false|
+|first_name|string|null: false|
+|last_name|string|null: false|
+|first_name_kana|string|null: false|
+|last_name_kana|string|null: false|
+|birthday|date|null: false|
 
 ### Association
 
@@ -19,14 +24,14 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|first_name|string|null: false|
+<!-- |first_name|string|null: false|
 |last_name|string|null: false|
 |first_name_kana|string|null: false|
-|last_name_kana|string|null: false|
-|tell|integer|unique: true|
+|last_name_kana|string|null: false| -->
+<!-- |tell|integer|unique: true| -->
 |introduce|text|
 |avatar|string|
-|birthday|date|null: false|
+<!-- |birthday|date|null: false| -->
 |user_id|integer|null: false, foreign_key: true|
 
 ### Association
@@ -42,6 +47,7 @@
 |city|string|null: false|
 |address_number|string|null: false|
 |building|string|
+|tell|integer|unique: true|
 |user_id|integer|null: false, foreign_key: true|
 
 
