@@ -1,5 +1,5 @@
 class Address < ApplicationRecord
-  extend ActiveHash::Associations::ActiveRecordExtensions
+  # extend ActiveHash::Associations::ActiveRecordExtensions
 
   validates :postal_code, :prefecture, :city, :address_number ,presence: true
   validates :sendfirst_name, :sendlast_name ,presence: true,
