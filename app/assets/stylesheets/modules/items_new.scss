@@ -77,6 +77,9 @@
     &__form{
       margin-bottom: 20px;
     }
+    &__label{
+      margin-top: 20px;
+    }
     .item_description{
       margin-bottom: 20px;
     }
@@ -156,7 +159,7 @@
   }
 }
 
-.footer{
+.footer_items_new{
   height: 200px;
   width: 100%;
 }
