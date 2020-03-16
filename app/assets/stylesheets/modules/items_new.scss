@@ -96,6 +96,13 @@
     border-bottom: solid 1px rgb(245, 245, 245);
     &__category{
       margin-bottom: 20px;
+      input{
+        width: 100%;
+        height: 48px;
+        border: 1px solid #ccc;
+        margin: 0;
+        padding: 0 16px;
+      }
     }
     &__condition{
       margin-bottom: 20px;
