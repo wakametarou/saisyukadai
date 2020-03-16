@@ -1,0 +1,29 @@
+.upper_log
+  = image_tag "log-icon.png", size: "216x60"
+.main
+  .item_name
+  .image
+    =image_tag "a007.png", size: "300x300"
+  %ul
+    %li
+    %li
+    %li
+    %li
+    %li
+    %li
+    %li
+    %li
+  .price
+  .tax_yes
+  .how_to_pay
+  .clumn
+  .edit_btn
+    = link_to "商品情報の編集", "#", method: 
+  .pause_btn
+  .detroy_btn
+.comment
+  .comment__notes
+  = form_tag do |form|
+    = form.text_field :keyword, placeholder: "コメントを入力してください", class: "comment__text"
+    = form.submit "コメント", class: "comment___btn"
+
