@@ -77,4 +77,7 @@ end
 gem "devise"
 gem 'font-awesome-sass'
 gem 'active_hash'
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'pry-rails'
 

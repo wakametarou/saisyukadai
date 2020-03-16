@@ -2,104 +2,106 @@
   %h1.user-new__icon
     = link_to image_tag('logo.png', class: "user-new__icon__image"), "#"
   .item_form
-    .item_sell
-      %h2 
-        商品出品ページ
-    .item_img
-      .item_img__label.bold
-        出品画像
-        %span.require
-          必須
-      .item_img__description
-        最大10枚までアップロードできます
-      .item_img__field 
-        %label
-          %input{type: 'file'}
-          %p
-            ドラッグ & ドロップ
-            %br/
-            または
-            %br/
-            クリックしてファイルをアップロード
-    .item_name
-      .item_name__form.bold
-        .item_name_label
-          商品名
+    = form_for @item do |f|
+      .item_sell
+        %h2 
+          商品出品ページ
+      .item_img
+        .item_img__label.bold
+          出品画像
           %span.require
             必須
-        %br/
-        %input{type: 'text'}
-      .item_description.bold
-        .item_name_label
-          商品の説明
-          %span.require
-            必須
-        %br
-        %input{type: 'text'}
-    .item_detail
-      .item_setumei
-        商品の詳細
-      .item_detail__category.bold
-        .item_name__label
-          カテゴリー
-          %span.require
-            必須
-        %br
-        %select
-        .item_name__label
-          ブランド
-          %span.any
-            任意
-        %br
-        %select
-      .item_detail__condition.bold
-        .item_name_label
-          商品の状態
-          %span.require
-            必須
-        %br
-        %select
-    .item_delivery
-      .item_setumei
-        配送について
-      .item_delivery__burden.bold
-        .item_name_label
-          配送料の負担
-          %span.require
-            必須
-        %br
-        %select
-      .item_delivery__area.bold
-        .item_name_label
-          発送元の地域
-          %span.require
-            必須
-        %br
-        %select
-      .item_delivery__days.bold
-        .item_name_label
-          発送までの日数
-          %span.require
-            必須
-        %br
-        %select
-    .item_price
-      .item_setumei
-        価格（¥300〜9,999,999）
-      .item_price__sale.bold
-        .item_name_label
-          販売価格
-          %span.require
-            必須
-        %br/
-        %input{type: 'number'}
-      .item_price__commission
-        販売手数料（10%）
-      .item_price__profit
-        販売利益
-    .btn
-      .exhibition_btn
-        %button{type: 'submit'} 出品する
-      .return_btn
-        %button{type: 'submit'} もどる
+        .item_img__description
+          最大10枚までアップロードできます
+        .item_img__field 
+          %label
+            = f.fields_for :item_images do |i|
+              = i.file_field :image
+            %p
+              ドラッグ & ドロップ
+              %br/
+              または
+              %br/
+              クリックしてファイルをアップロード
+      .item_name
+        .item_name__form.bold
+          .item_name_label
+            商品名
+            %span.require
+              必須
+          %br/
+          = f.text_field :name
+        .item_description.bold
+          .item_name_label
+            商品の説明
+            %span.require
+              必須
+          %br
+          =f.text_field :detail
+      .item_detail
+        .item_setumei
+          商品の詳細
+        .item_detail__category.bold
+          .item_name__label
+            カテゴリー
+            %span.require
+              必須
+          %br
+          = f.select :category, ['レディース','メンズ','ベビー・キッズ','インテリア・住まい・小物','本・音楽・ゲーム','おもちゃ・ホビー・グッズ','コスメ・香水・美容','家電・スマホ・カメラ','スポーツ・レジャー','ハンドメイド','チケット','自動車・オートバイ','その他']
+          .item_name__label
+            ブランド
+            %span.any
+              任意
+          %br
+          = f.text_field :brand
+        .item_detail__condition.bold
+          .item_name_label
+            商品の状態
+            %span.require
+              必須
+          %br
+          = f.select :condition, ['新品、未使用','未使用に近い','目立った傷や汚れなし','やや傷や汚れあり','傷や汚れあり','全体的に状態が悪い'], {include_blank: '選択してください'}
+      .item_delivery
+        .item_setumei
+          配送について
+        .item_delivery__burden.bold
+          .item_name_label
+            配送料の負担
+            %span.require
+              必須
+          %br
+          = f.select :delivery_tax_payer, ['送料込み(出品者負担)','着払い(購入者負担)'], {include_blank: '選択してください'}
+        .item_delivery__area.bold
+          .item_name_label
+            発送元の地域
+            %span.require
+              必須
+          %br
+          = f.select :delivery_from, ['北海道','青森県','東京都','京都府','大阪府','広島県','福岡県','沖縄県','未定'], {include_blank: '選択してください'}
+        .item_delivery__days.bold
+          .item_name_label
+            発送までの日数
+            %span.require
+              必須
+          %br
+          = f.select :delivery_days, ['１〜２日で発送','２〜３日で発送','４〜７日で発送'], {include_blank: '選択してください'}
+      .item_price
+        .item_setumei
+          価格（¥300〜9,999,999）
+        .item_price__sale.bold
+          .item_name_label
+            販売価格
+            %span.require
+              必須
+          %br/
+          = f.number_field :price
+        .item_price__commission
+          販売手数料（10%）
+        .item_price__profit
+          販売利益
+      .btn
+        .exhibition_btn
+          = f.submit "出品する"
+        .return_btn
+          %button{type: 'submit'} もどる
   .footer_items_new

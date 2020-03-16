@@ -69,6 +69,7 @@
 |delivery_from|integer|null: false|
 |delivery_days|integer|null: false|
 |category|integer|null: false, foreign_key: true|
+|brand|integer|foreign_key: true|
 |user_id|integer|null: false, foreign_key: true|
 
 ### Association
@@ -76,7 +77,8 @@
 - has_many :item_images, dependent: :destroy
 - has_one :dealing
 - belongs_to :user
-- belongs_to :category
+- belongs_to :item_category
+- belongs_to :item_brand
 
 
 ## item_imagesテーブル
@@ -84,19 +86,30 @@
 |Column|Type|Options|
 |------|----|-------|
 |image|string|null: false|
-|item|integer|foreign_key: true|
+|item|references|foreign_key: true|
 
 ### Association
 
 - belongs_to :item
 
 
-## categorysテーブル
+## item_categorysテーブル
 
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null: false, index: true|
 |ancestry|string|
+
+### Association
+
+- has_many :items
+
+
+## item_brandsテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|name|string||
 
 ### Association
 
