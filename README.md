@@ -5,6 +5,11 @@
 |nickname|string|null: false|
 |email|string|null: false, unique: true|
 |password|string|null: false|
+|first_name|string|null: false|
+|last_name|string|null: false|
+|first_name_kana|string|null: false|
+|last_name_kana|string|null: false|
+|birthday|date|null: false|
 
 ### Association
 
@@ -19,14 +24,14 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|first_name|string|null: false|
+<!-- |first_name|string|null: false|
 |last_name|string|null: false|
 |first_name_kana|string|null: false|
-|last_name_kana|string|null: false|
-|tell|integer|unique: true|
+|last_name_kana|string|null: false| -->
+<!-- |tell|integer|unique: true| -->
 |introduce|text|
 |avatar|string|
-|birthday|date|null: false|
+<!-- |birthday|date|null: false| -->
 |user_id|integer|null: false, foreign_key: true|
 
 ### Association
@@ -42,6 +47,7 @@
 |city|string|null: false|
 |address_number|string|null: false|
 |building|string|
+|tell|integer|unique: true|
 |user_id|integer|null: false, foreign_key: true|
 
 
@@ -63,6 +69,7 @@
 |delivery_from|integer|null: false|
 |delivery_days|integer|null: false|
 |category|integer|null: false, foreign_key: true|
+|brand|integer|foreign_key: true|
 |user_id|integer|null: false, foreign_key: true|
 
 ### Association
@@ -70,7 +77,8 @@
 - has_many :item_images, dependent: :destroy
 - has_one :dealing
 - belongs_to :user
-- belongs_to :category
+- belongs_to :item_category
+- belongs_to :item_brand
 
 
 ## item_imagesテーブル
@@ -78,19 +86,30 @@
 |Column|Type|Options|
 |------|----|-------|
 |image|string|null: false|
-|item|integer|foreign_key: true|
+|item|references|foreign_key: true|
 
 ### Association
 
 - belongs_to :item
 
 
-## categorysテーブル
+## item_categorysテーブル
 
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null: false, index: true|
 |ancestry|string|
+
+### Association
+
+- has_many :items
+
+
+## item_brandsテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|name|string||
 
 ### Association
 
