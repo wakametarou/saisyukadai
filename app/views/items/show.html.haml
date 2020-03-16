@@ -1,29 +1,71 @@
 .upper_log
-  = image_tag "log-icon.png", size: "216x60"
+  = image_tag "logo.png", size: "216x60"
 .main
   .item_name
-  .image
-    =image_tag "a007.png", size: "300x300"
-  %ul
-    %li
-    %li
-    %li
-    %li
-    %li
-    %li
-    %li
-    %li
-  .price
-  .tax_yes
-  .how_to_pay
-  .clumn
-  .edit_btn
-    = link_to "商品情報の編集", "#", method: 
-  .pause_btn
-  .detroy_btn
+    サバだと思われる何かかも知れないモノ
+  .item_infomation
+    .image
+      = image_tag "a007.png", size: "300x300"
+      %ul.stock
+        %li.stock_image{data: {image: {id: 1}}}
+          = image_tag "a001.png", size: "75x75"
+        %li.stock_image{data: {image: {id: 2}}}
+          = image_tag "a004.png", size: "75x75" 
+        %li.stock_image{data: {image: {id: 3}}}
+          = image_tag "a007.png", size: "75x75" 
+    .item_table
+      %ul.item_category
+        %li.category
+          出品者
+        %li.category
+          カテゴリー
+        %li.category
+          ブランド
+        %li.category
+          商品状態
+        %li.category
+          送料の負担
+        %li.category
+          配送方法
+        %li.category
+          配送元地域
+        %li.category
+          発送日の目安
+      %ul.item_detail
+        %li.detail
+          出品者
+        %li.detail
+          カテゴリー
+        %li.detail
+          ブランド
+        %li.detail
+          商品状態
+        %li.detail
+          送料の負担
+        %li.detail
+          配送方法
+        %li.detail
+          配送元地域
+        %li.detail
+          発送日の目安
+  .price_table
+    .price
+      ¥300
+    .tax_boolian
+      (税込)
+    .how_to_pay
+      着払い
+  .discription
+    商品説明
+  .column
+    この商品はとてもイイやつダヨ。カッテネ。
+  .buy_btn
+    %label
+      = link_to "購入する", new_dealing_path, method: :get
 .comment
-  .comment__notes
-  = form_tag do |form|
-    = form.text_field :keyword, placeholder: "コメントを入力してください", class: "comment__text"
-    = form.submit "コメント", class: "comment___btn"
-
+  .comment__area
+    コメントはここに表示
+  = form_with(url: "#", local: true, method: :get, class: "form_style") do |form|
+    = form.text_area :text, placeholder: "コメントを入力してください", class: "text_style"
+    = form.submit "コメントする", class: "btn_style"
+.footer
