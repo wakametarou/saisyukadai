@@ -1,0 +1,151 @@
+.body
+  .header
+    .header__inner
+      .main-header
+        %h1.icon 
+          = link_to image_tag('logo.png', class: "icon__image"), root_path
+        .search-box
+          .form
+            %input{type: "text",class: "search-box__text", placeholder: "キーワードから探す"}
+            %button{type: "submit",class: "submit-btn", value: "Send"}
+              .search-button
+                = image_tag('search.png', class: "search-button__image")
+      .nav
+        %ul.list-left 
+          %li.list-left__first 
+            = link_to "#" do
+              カテゴリー
+          %li.list-left__last
+            = link_to "#" do
+              ブランド
+        %ul.list-right
+          %li
+            = link_to "ログアウト", destroy_user_session_path, method: :delete
+          %li.list-right__login
+            = link_to new_user_session_path do
+              ログイン
+          %li.list-right__new
+            = link_to new_user_registration_path do
+              新規会員登録
+.main
+  .item_name
+    items_name
+  .image
+    = image_tag "a007.png", size: "300x300"
+    %ul.stock
+      %li.stock_image{data: {image: {id: 1}}}
+        = image_tag "a001.png", size: "80x80"
+      %li.stock_image{data: {image: {id: 2}}}
+        = image_tag "a004.png", size: "80x80" 
+      %li.stock_image{data: {image: {id: 3}}}
+        = image_tag "a007.png", size: "80x80" 
+  .price
+    ¥300
+  .price_table
+    .tax
+      (税込)
+    .how_to_pay
+      着払い
+  .discription
+    商品説明
+  .column
+    商品説明を入力していません
+  .item_table
+    %ul.item_category
+      %li.category
+        出品者
+      %li.category
+        カテゴリー
+      %li.category
+        ブランド
+      %li.category
+        商品状態
+      %li.category
+        送料の負担
+      %li.category
+        配送方法
+      %li.category
+        配送元地域
+      %li.category
+        発送日の目安
+    %ul.item_detail
+      %li.detail
+        userName
+      %li.detail
+        category
+      %li.detail
+        brand
+      %li.detail
+        condition
+      %li.detail
+        pay_burden
+      %li.detail
+        how_to_send
+      %li.detail
+        send_area
+      %li.detail
+        send_day
+  .buy_btn
+    %label
+      = link_to "購入する", new_dealing_path, method: :get
+.comment
+  .comment__area
+    コメントがありません
+  = form_with(url: "#", local: true, method: :get, class: "form_style") do |form|
+    = form.text_area :text, placeholder: "コメントを入力してください", class: "text_style"
+    = form.submit "コメントする", class: "btn_style"
+.footer
+  .flont_item
+    = link_to "＜ 前の商品", "#", method: :get
+  .next_item
+    = link_to "次の商品 ＞", "#", method: :get
+.category_select
+  = link_to "categoryをもっと見る", "#", method: :get
+.body
+  .top-footer
+    %ul.contents 
+      %li.content 
+        %h2.content__tittle
+          FURIMAについて
+        %ul.lists
+          %li.list
+            = link_to "#" do
+              会社概要（運営会社）
+          %li.list
+            = link_to "#" do
+              プライバシーポリシー
+          %li.list
+            = link_to "#" do
+              FURIMA利用規約
+          %li.list
+            = link_to "#" do
+              ポイントに関する特約
+      
+      %li.content 
+        %h2.content__tittle
+          FURIMAを見る
+        %ul.lists
+          %li.list
+            = link_to "#" do
+              カテゴリー一覧
+          %li.list
+            = link_to "#" do
+              ブランド一覧
+      
+      %li.content 
+        %h2.content__tittle
+          ヘルプ＆ガイド
+        %ul.lists
+          %li.list
+            = link_to "#" do
+              FURIMAガイド
+          %li.list
+            = link_to "#" do
+              FURIMAロゴ利用ガイドライン
+          %li.list
+            = link_to "#" do
+              お知らせ
+    .footer__logo
+      = link_to image_tag('logo-white.png', class: "logo__image"), '#'
+    %p
+      © FURIMA
