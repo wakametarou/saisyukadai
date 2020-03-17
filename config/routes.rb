@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get 'users/show'
   root 'items#index'
 
-  resources :items, only: [:index, :new, :create]
+  resources :items, only: [:index, :new, :create, :show]
 
   resources :users, only: :show
   resources :dealings, only: :new
