@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_17_081317) do
+ActiveRecord::Schema.define(version: 2020_03_18_100204) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "sendfirst_name", null: false
@@ -44,6 +44,16 @@ ActiveRecord::Schema.define(version: 2020_03_17_081317) do
     t.index ["name"], name: "index_categories_on_name"
   end
 
+  create_table "dealings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.boolean "phase", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "item_id"
+    t.bigint "user_id"
+    t.index ["item_id"], name: "index_dealings_on_item_id"
+    t.index ["user_id"], name: "index_dealings_on_user_id"
+  end
+
   create_table "item_brands", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -70,12 +80,12 @@ ActiveRecord::Schema.define(version: 2020_03_17_081317) do
     t.string "name", null: false
     t.integer "price", null: false
     t.text "detail", null: false
-    t.integer "condition", null: false
-    t.integer "delivery_tax_payer", null: false
-    t.integer "delivery_from", null: false
-    t.integer "delivery_days", null: false
-    t.integer "category", null: false
-    t.integer "brand"
+    t.string "condition", null: false
+    t.string "delivery_tax_payer", null: false
+    t.string "delivery_from", null: false
+    t.string "delivery_days", null: false
+    t.string "category_id", null: false
+    t.string "brand"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -86,9 +96,10 @@ ActiveRecord::Schema.define(version: 2020_03_17_081317) do
   create_table "profiles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "introduce"
     t.string "avatar"
-    t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -110,6 +121,9 @@ ActiveRecord::Schema.define(version: 2020_03_17_081317) do
   end
 
   add_foreign_key "addresses", "users"
+  add_foreign_key "dealings", "items"
+  add_foreign_key "dealings", "users"
   add_foreign_key "item_images", "items"
   add_foreign_key "items", "users"
+  add_foreign_key "profiles", "users"
 end

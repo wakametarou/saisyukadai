@@ -1,4 +1,4 @@
-%body.clearfix 
+.body.clearfix 
   .header
     .header__inner
       .main-header
@@ -21,11 +21,11 @@
               ブランド
         %ul.list-right
           %li.list-right__login
-            = link_to "#" do
-              ログイン
+            = link_to destroy_user_session_path, method: :delete do
+              ログアウト
           %li.list-right__new
-            = link_to "#" do
-              新規会員登録
+            = link_to users_show_path(current_user.id) do
+              マイページ
 
   %nav.bread
     %ul
