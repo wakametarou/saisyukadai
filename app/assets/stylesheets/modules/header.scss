@@ -2,7 +2,12 @@
   box-sizing: border-box;
 }
 .body{
+  position: relative;
   font-family: "Source Sans Pro", Helvetica, Arial, "游ゴシック体", "YuGothic", "メイリオ", "Meiryo", sans-serif;
+  background-color: #f5f5f5;
+  font-size: 14px;
+  line-height: 1;
+  min-height: 100%;
   .header{
     padding: 0 60px;
     height: 110px;
@@ -59,14 +64,14 @@
       .nav{
         font-size: 14px;
         display: flex;
+        justify-content: space-between;
         margin: 10px 0;
         .list-left {
           display: flex;
-          position: relative;
           .list-left__first {
+            margin-right: 30px;
             a{
               text-decoration: none;
-              padding: 0 30px 0 0 ;
               color: black;
             }
           }
@@ -74,25 +79,33 @@
             a{
               display: flex;
               text-decoration: none;
-              padding: 0 0 0 15px;
               color: black;
             }
           }
           }
         .list-right{
           display: flex;
-          margin-left: auto;
-          .list-right__login{
+          &__login{
+            margin-right: 30px;
             a{
               text-decoration: none;
-              display: flex;  
               color: black;
-              padding: 0 16px;
             }
           }
-          .list-right__new{
+          &__new{
             a{
               text-decoration: none;
+              color: black;
+            }
+          }
+          &__mypage {
+            a {
+              color: black;
+            }
+          }
+          &__logout {
+            margin-right: 30px;
+            a{
               color: black;
             }
           }
@@ -386,7 +399,7 @@
                   width: 220px;
                 }
               }
-              .body{
+              .bodey{
                 background-color: white;
                 color: black;
                 padding: 16px;
