@@ -35,14 +35,14 @@
   .item_name
     = @item.name
   .image
-    = image_tag "a007.png", size: "300x300"
+    - if (@item.dealing != nil && @item.dealing[:phase] == true)
+      .soldout_neo
+        SOLD OUT
+    = image_tag "#{@item.item_images[0][:image]}", size: "300x300", class: "main_image"
     %ul.stock
-      %li.stock_image{data: {image: {id: 1}}}
-        = image_tag "a001.png", size: "80x80"
-      %li.stock_image{data: {image: {id: 2}}}
-        = image_tag "a004.png", size: "80x80" 
-      %li.stock_image{data: {image: {id: 3}}}
-        = image_tag "a007.png", size: "80x80" 
+      - @item.item_images.each do |image|
+        %li.stock_image{data: {image: {id: image[:image]}}}
+          = image_tag "#{image[:image]}", size: "80x80"
   .price_table
     .price
       = number_to_currency(@item.price, unit: "円", format: "%n%u", precision: 0)
@@ -52,8 +52,12 @@
     = @item.delivery_tax_payer
   .discription
     商品説明
-  .column
-    = @item.detail
+  - if (@item.detail === "")
+    .column
+      商品説明が設定されていません
+  - else
+    .column
+      = @item.detail
   .item_table
     %ul.item_category
       %li.category
