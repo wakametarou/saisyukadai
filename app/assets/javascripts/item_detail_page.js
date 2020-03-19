@@ -2,7 +2,6 @@ $(function() {
   let text = $(".column").text();
   let text_fix = text.replace(/\n/, "");
   text = text_fix.replace(/\n/g, "<br>");
-  console.log(text);
   $(".column").html(text);
 
   // 画像切り替え機能
