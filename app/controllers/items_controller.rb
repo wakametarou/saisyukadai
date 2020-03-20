@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   def index
+    @items = Item.all
   end
 
   def new
@@ -10,7 +11,7 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     # binding.pry
-    if @item.save!
+    if @item.save
       redirect_to root_path
     else
       render :new
@@ -18,7 +19,18 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @item = Item.find(params[:id])
   end
+
+  # def pay
+  #   @item = Item.find(params[:id])
+  #   Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
+  #   charge = Payjp::Charge.create(
+  #   amount: @item.price,
+  #   card: params['payjp-token'],
+  #   currency: 'jpy'
+  #   )
+  # end
 
   private
 

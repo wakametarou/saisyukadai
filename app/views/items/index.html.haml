@@ -129,7 +129,7 @@
               新規投稿商品
         .item-lists 
           .item-list
-            = link_to "#" do
+            = link_to item_path(@items[0].id) do
               %figure.item-list_image
                 = image_tag("a007.png",class: "item__image")
               .body

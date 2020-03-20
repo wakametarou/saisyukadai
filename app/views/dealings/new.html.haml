@@ -12,10 +12,10 @@
             = image_tag("a007.png", class: "buy-image")
           .item-data
             %p.item-name
-              商品名
+              = @item.name
             %p.item-price
               %span
-                ¥ 300円
+                = @item.price
               %span.item-fee
                 (税込) 着払い
     %section.item
@@ -43,6 +43,8 @@
                   %i.fas.fa-plus-circle
                   %span.register
                     登録してください
+              -# = form_tag({ :controller => 'items', :action => 'pay' }, { :method => :post}) do
+              -#   %script.payjp-button{"data-key" => "pk_test_cc8194b2b897885b090c8c89", "data-partial" => "true", "data-submit-text" => "登録する", :src => "https://checkout.pay.jp/", :type => "text/javascript"}
           %section.user-info
             .user-inner
               %h3
@@ -55,4 +57,5 @@
           %section.user-info
             %button{type: "submit", class: "buy-btn"}
               購入する
+    %script.payjp-button{"data-key" => "pk_test_0383a1b8f91e8a6e3ea0e2a9", "data-partial" => "true", "data-submit-text" => "トークンを作成する", :src => "https://checkout.pay.jp/", :type => "text/javascript"}
 .user-new__footer
