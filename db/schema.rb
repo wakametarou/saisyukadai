@@ -52,6 +52,16 @@ ActiveRecord::Schema.define(version: 2020_03_17_073552) do
     t.index ["name"], name: "index_categories_on_name"
   end
 
+  create_table "dealings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.boolean "phase", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "item_id"
+    t.bigint "user_id"
+    t.index ["item_id"], name: "index_dealings_on_item_id"
+    t.index ["user_id"], name: "index_dealings_on_user_id"
+  end
+
   create_table "item_brands", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -78,12 +88,12 @@ ActiveRecord::Schema.define(version: 2020_03_17_073552) do
     t.string "name", null: false
     t.integer "price", null: false
     t.text "detail", null: false
-    t.integer "condition", null: false
-    t.integer "delivery_tax_payer", null: false
-    t.integer "delivery_from", null: false
-    t.integer "delivery_days", null: false
-    t.integer "category", null: false
-    t.integer "brand"
+    t.string "condition", null: false
+    t.string "delivery_tax_payer", null: false
+    t.string "delivery_from", null: false
+    t.string "delivery_days", null: false
+    t.string "category_id", null: false
+    t.string "brand"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -113,6 +123,11 @@ ActiveRecord::Schema.define(version: 2020_03_17_073552) do
     t.date "birthday", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "first_name", null: false
+    t.string "last_name", null: false
+    t.string "first_name_kana", null: false
+    t.string "last_name_kana", null: false
+    t.date "birthday", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -120,4 +135,5 @@ ActiveRecord::Schema.define(version: 2020_03_17_073552) do
   add_foreign_key "addresses", "users"
   add_foreign_key "item_images", "items"
   add_foreign_key "items", "users"
+  add_foreign_key "profiles", "users"
 end

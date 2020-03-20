@@ -1,6 +1,9 @@
 class ItemsController < ApplicationController
+
   def index
-    @items = Item.all
+
+    @items = Item.all.includes(:item_images)
+
   end
 
   def new
@@ -10,8 +13,9 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-    # binding.pry
-    if @item.save
+
+    if @item.save!
+
       redirect_to root_path
     else
       render :new
@@ -20,6 +24,12 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
+
+    respond_to do |format|
+      format.json
+      format.html
+    end
+
   end
 
   # def pay

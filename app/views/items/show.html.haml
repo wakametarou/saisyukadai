@@ -2,7 +2,7 @@
   .header
     .header__inner
       .main-header
-        %h1.icon 
+        %h1.icon
           = link_to image_tag('logo.png', class: "icon__image"), root_path
         .search-box
           .form
@@ -11,45 +11,53 @@
               .search-button
                 = image_tag('search.png', class: "search-button__image")
       .nav
-        %ul.list-left 
-          %li.list-left__first 
+        %ul.list-left
+          %li.list-left__first
             = link_to "#" do
               カテゴリー
           %li.list-left__last
             = link_to "#" do
               ブランド
         %ul.list-right
-          %li
-            = link_to "ログアウト", destroy_user_session_path, method: :delete
-          %li.list-right__login
-            = link_to new_user_session_path do
-              ログイン
-          %li.list-right__new
-            = link_to new_user_registration_path do
-              新規会員登録
+          - if (user_signed_in?)
+            %li.list-right__logout
+              = link_to "ログアウト", destroy_user_session_path, method: :delete
+            %li.list-right__mypage
+              = link_to "マイページ", users_show_path(current_user.id)
+          - else
+            %li.list-right__login
+              = link_to new_user_session_path do
+                ログイン
+            %li.list-right__new
+              = link_to new_user_registration_path do
+                新規会員登録
 .main_page
   .item_name
-    items_name
+    = @item.name
   .image
-    = image_tag "a007.png", size: "300x300"
+    - if (@item.dealing != nil && @item.dealing[:phase] == true)
+      .soldout_neo
+        SOLD OUT
+    = image_tag "#{@item.item_images[0][:image]}", size: "300x300", class: "main_image"
     %ul.stock
-      %li.stock_image{data: {image: {id: 1}}}
-        = image_tag "a001.png", size: "80x80"
-      %li.stock_image{data: {image: {id: 2}}}
-        = image_tag "a004.png", size: "80x80" 
-      %li.stock_image{data: {image: {id: 3}}}
-        = image_tag "a007.png", size: "80x80" 
-  .price
-    ¥300
+      - @item.item_images.each do |image|
+        %li.stock_image{data: {image: {id: image[:image]}}}
+          = image_tag "#{image[:image]}", size: "80x80"
   .price_table
+    .price
+      = number_to_currency(@item.price, unit: "円", format: "%n%u", precision: 0)
     .tax
       (税込)
-    .how_to_pay
-      着払い
+  .how_to_pay
+    = @item.delivery_tax_payer
   .discription
     商品説明
-  .column
-    商品説明を入力していません
+  - if (@item.detail === "")
+    .column
+      商品説明が設定されていません
+  - else
+    .column
+      = @item.detail
   .item_table
     %ul.item_category
       %li.category
@@ -63,31 +71,31 @@
       %li.category
         送料の負担
       %li.category
-        配送方法
-      %li.category
         配送元地域
       %li.category
         発送日の目安
     %ul.item_detail
       %li.detail
-        userName
+        = @item.user[:nickname]
       %li.detail
-        category
+        = @item.category_id
       %li.detail
-        brand
+        - if (@item.brand != nil)
+          = @item.brand
+        - else
+          カテゴリーが設定されていません
       %li.detail
-        condition
+        = @item.condition
       %li.detail
-        pay_burden
+        = @item.delivery_tax_payer
       %li.detail
-        how_to_send
+        = @item.delivery_from
       %li.detail
-        send_area
-      %li.detail
-        send_day
-  .buy_btn
-    %label
-      = link_to "購入する", new_item_dealing_path(@item.id), method: :get
+        = @item.delivery_days
+  - if (user_signed_in? && (@item.dealing == nil || @item.dealing[:phase] == false))
+    .buy_btn
+      %label
+        = link_to "購入する", new_item_dealing_path(@item.id), method: :get
 .comment
   .comment__area
     コメントがありません
@@ -95,16 +103,20 @@
     = form.text_area :text, placeholder: "コメントを入力してください", class: "text_style"
     = form.submit "コメントする", class: "btn_style"
 .footer
-  .flont_item
-    = link_to "＜ 前の商品", "#", method: :get
-  .next_item
-    = link_to "次の商品 ＞", "#", method: :get
+  - if (@item.id - 1 != 0)
+    .flont_item
+      - number = @item.id - 1
+      = link_to "＜ 前の商品", item_path(number), method: :get
+  - if (Item.all.length >= @item.id + 1)
+    .next_item
+      - number = @item.id + 1
+      = link_to "次の商品 ＞", item_path(number), method: :get
 .category_select
   = link_to "categoryをもっと見る", "#", method: :get
 .body
   .top-footer
-    %ul.contents 
-      %li.content 
+    %ul.contents
+      %li.content
         %h2.content__tittle
           FURIMAについて
         %ul.lists
@@ -120,8 +132,8 @@
           %li.list
             = link_to "#" do
               ポイントに関する特約
-      
-      %li.content 
+
+      %li.content
         %h2.content__tittle
           FURIMAを見る
         %ul.lists
@@ -131,8 +143,8 @@
           %li.list
             = link_to "#" do
               ブランド一覧
-      
-      %li.content 
+
+      %li.content
         %h2.content__tittle
           ヘルプ＆ガイド
         %ul.lists

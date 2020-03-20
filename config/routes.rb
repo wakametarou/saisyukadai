@@ -22,8 +22,11 @@ Rails.application.routes.draw do
     end
   end
 
-  
+  resources :items, only: [:index, :new, :create, :show] do
+    resources :dealings, only: :new
+  end
 
+  resources :users, only: :show
 
   resources :purchase, only: [:index] do
     collection do
@@ -34,6 +37,5 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: :show
-  
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
