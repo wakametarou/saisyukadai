@@ -92,27 +92,39 @@
         = @item.delivery_from
       %li.detail
         = @item.delivery_days
-  - if (user_signed_in? && (@item.dealing == nil || @item.dealing[:phase] == false))
+  - if (user_signed_in? && (@item.dealing == nil || @item.dealing[:phase] == false) && @item.user_id != current_user.id)
     .buy_btn
       %label
         = link_to "購入する", new_item_dealing_path(@item.id), method: :get
+  - elsif (user_signed_in? && (@item.dealing == nil || @item.dealing[:phase] == false) && @item.user_id == current_user.id)
+    .buy_btn
+      %label
+        = link_to "編集する", "#", method: :get;
+    .buy_btn
+      %label
+        = link_to "削除する", item_path(@item.id), method: :delete;
+  - if (@flag == 1)
+    .message
+      削除できませんでした
 .comment
   .comment__area
     コメントがありません
   = form_with(url: "#", local: true, method: :get, class: "form_style") do |form|
     = form.text_area :text, placeholder: "コメントを入力してください", class: "text_style"
     = form.submit "コメントする", class: "btn_style"
-.footer
-  - if (@item.id - 1 != 0)
-    .flont_item
-      - number = @item.id - 1
-      = link_to "＜ 前の商品", item_path(number), method: :get
-  - if (Item.all.length >= @item.id + 1)
-    .next_item
-      - number = @item.id + 1
-      = link_to "次の商品 ＞", item_path(number), method: :get
-.category_select
-  = link_to "categoryをもっと見る", "#", method: :get
+- if (current_user.id != @item.user_id)
+  .footer
+    - if (@item.id - 1 != 0)
+      .flont_item
+        - number = @item.id - 1
+        = link_to "＜ 前の商品", item_path(number), method: :get
+    - if (Item.all.length >= @item.id + 1)
+      .next_item
+        - number = @item.id + 1
+        = link_to "次の商品 ＞", item_path(number), method: :get
+  .category_select
+    = link_to "categoryをもっと見る", "#", method: :get
+.space_neo
 .body
   .top-footer
     %ul.contents 

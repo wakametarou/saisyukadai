@@ -9,10 +9,11 @@ Rails.application.routes.draw do
   get 'users/show'
   root 'items#index'
 
-  resources :items, only: [:index, :new, :create, :show] do
+  resources :items, only: [:index, :new, :create, :show, :destroy] do
     resources :dealings, only: :new
   end
 
   resources :users, only: [:show, :edit]
+  resources :items_sold, only: :index
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

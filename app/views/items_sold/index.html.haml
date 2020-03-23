@@ -33,93 +33,29 @@
         フリマ >
       %li.text
         マイページ
-  %main.container.clearfix 
-    .content
-      %section.user-icon
-        =link_to "#" do
-          %figure
-            = image_tag("user-image.png", size: "60×60",class: "user-image")
-          %h2.nickname
-            name
-          .user-number
-            %div
-              評価
-              %span.num 
-                0
-            %div
-              出品数
-              %apan.num
-                ０
+  %main.container.clearfix
 
-      %section.notice
-        %ul.tabs 
-          %li.active
-            %h3
-              =link_to "#" do
-                お知らせ
-          %li.active2
-            %h3
-              =link_to "#" do
-                やることリスト
-        .tab-content
-          %ul.item-list-left 
-            %li.list-text
-              = link_to "#" do
-                %figure
-                  = image_tag("log-icon.png", class: "tag-icon")
-                .item-body
-                  .item-text
-                    フリマアプリ
-                  .time
-                    %i.far.fa-clock
-                    %span
-                      ４時間前
-                %i.fa.fa-angle-right
-            
-            %li.list-text
-              = link_to "#" do
-                %figure
-                  = image_tag("log-icon.png", class: "tag-icon")
-                .item-body
-                  .item-text
-                    フリマアプリ
-                  .time
-                    %i.far.fa-clock
-                    %span
-                      ４時間前
-                %i.fa.fa-angle-right
-            
-            %li.list-text
-              = link_to "#" do
-                %figure
-                  = image_tag("log-icon.png", class: "tag-icon")
-                .item-body
-                  .item-text
-                    フリマアプリ
-                  .time
-                    %i.far.fa-clock
-                    %span
-                      ４時間前
-                %i.fa.fa-angle-right
-            %li.go-list
-              = link_to "#" do
-                一覧を見る
-      %section.buy
-        %h2.buy-tab-head 
-          購入した商品
-        %ul.buy-tabs
-          %li.active
-            %h3
-              =link_to "#" do
-                取引中
-          %li.active2
-            %h3
-              =link_to "#" do
-                過去の取引
-        .tab-content
-          %ul.buy-item-list
-            %li.item-not-list
-              取引中の商品がありません
+    .content
+      .item-lists-sold
+        - @items.each do |item|
+          .item-list-sold
+            = link_to item_path(item.id) do
+              - if (current_user.id == item.user_id && item.dealing == nil)
+                %figure.item-list_image-sold
+                  = image_tag("#{item.item_images[0][:image]}", class: "item-list_image_image")
+                .bodey-sold
+                  %h3.name-sold
+                    = item.name
+                  .data-sold
+                    %ul
+                      %li
+                        = number_to_currency(item.price, unit: "円", format: "%n%u", precision: 0)
+                      %li
+                        %i.fa.fa-star
+                        0
+                    %p
+                      (税込)
+
     .side
       %nav.my-nav
         %ul.my-nav-list
@@ -216,7 +152,7 @@
               電話番号の確認
               %i.fa.fa-angle-right
           %li
-            = link_to edit_user_path(current_user.id) do
+            =link_to "#" do
               ログアウト
               %i.fa.fa-angle-right
 
@@ -275,6 +211,3 @@
         出品する
       .sell-btn__icon
         = image_tag('icon_camera.png', class: "sell-icon__image")
-
-
-
