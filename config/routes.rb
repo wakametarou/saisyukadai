@@ -13,8 +13,7 @@ Rails.application.routes.draw do
     resources :dealings, only: :new
   end
 
+  resources :users, only: [:show, :edit]
   resources :items_sold, only: :index
-
-  resources :users, only: :show
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
