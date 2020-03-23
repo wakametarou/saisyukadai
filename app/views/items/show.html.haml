@@ -103,6 +103,9 @@
     .buy_btn
       %label
         = link_to "削除する", item_path(@item.id), method: :delete;
+  - if (@flag == 1)
+    .message
+      削除できませんでした
 .comment
   .comment__area
     コメントがありません

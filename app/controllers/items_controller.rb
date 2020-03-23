@@ -19,7 +19,7 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
+    set_item
     respond_to do |format|
       format.json
       format.html
@@ -27,15 +27,24 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    item = Item.find(params[:id])
-    item.destroy
-    redirect_to items_sold_index_path
+    set_item
+    if (@item.destroy)
+      flash[:notice] = "削除されました"
+      redirect_to items_sold_index_path
+    else
+      flash.now[:alert] = "削除できませんでした"
+      render :show
+    end
   end
 
   private
 
   def item_params
     params.require(:item).permit(:name, :price, :detail, :condition, :delivery_tax_payer, :delivery_from, :delivery_days, :category, :brand, item_images_attributes: [:image]).merge(user_id: current_user.id)
+  end
+
+  def set_item
+    @item = Item.find(params[:id])
   end
 
 end
