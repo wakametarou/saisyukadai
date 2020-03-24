@@ -10,49 +10,49 @@ describe Address do
     it "is invalid without a sendfirst_name" do
       address = build(:address, sendfirst_name: nil)
       address.valid?
-      expect(address.errors[:sendfirst_name]).to include("can't be blank")
+      expect(address.errors[:sendfirst_name]).to include("を入力してください")
     end
 
     it "is invalid without a sendlast_name" do
       address = build(:address, sendlast_name: nil)
       address.valid?
-      expect(address.errors[:sendlast_name]).to include("can't be blank")
+      expect(address.errors[:sendlast_name]).to include("を入力してください")
     end
 
     it "is invalid without a sendfirst_name_kana" do
       address = build(:address, sendfirst_name_kana: nil)
       address.valid?
-      expect(address.errors[:sendfirst_name_kana]).to include("can't be blank")
+      expect(address.errors[:sendfirst_name_kana]).to include("を入力してください")
     end
 
     it "is invalid without a sendlast_name_kana" do
       address = build(:address, sendlast_name_kana: nil)
       address.valid?
-      expect(address.errors[:sendlast_name_kana]).to include("can't be blank")
+      expect(address.errors[:sendlast_name_kana]).to include("を入力してください")
     end
 
     it "is invalid without a postal_code" do
       address = build(:address, postal_code: nil)
       address.valid?
-      expect(address.errors[:postal_code]).to include("can't be blank")
+      expect(address.errors[:postal_code]).to include("を入力してください")
     end
 
     it "is invalid without a prefecture" do
       address = build(:address, prefecture: nil)
       address.valid?
-      expect(address.errors[:prefecture]).to include("can't be blank")
+      expect(address.errors[:prefecture]).to include("を入力してください")
     end
 
     it "is invalid without a city" do
       address = build(:address, city: nil)
       address.valid?
-      expect(address.errors[:city]).to include("can't be blank")
+      expect(address.errors[:city]).to include("を入力してください")
     end
 
     it "is invalid without a address_number" do
       address = build(:address, address_number: nil)
       address.valid?
-      expect(address.errors[:address_number]).to include("can't be blank")
+      expect(address.errors[:address_number]).to include("を入力してください")
     end
 
     it "sendfirst_nameが全角で返ること" do

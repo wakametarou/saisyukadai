@@ -1,7 +1,8 @@
 class ChangeCategoriesToItemCategories < ActiveRecord::Migration[5.2]
   def change
     create_table :item_categories do |t|
-      t.string :name,     null: false, index: true
+      t.string :name,      null: false, index: true
+      t.references :item,  foreign_key: true
       t.string :ancestry
       t.timestamps
     end
