@@ -72,7 +72,7 @@
 - has_one :dealing
 - belongs_to :user
 - belongs_to :item_category
-- belongs_to :item_brand
+<!-- - belongs_to :item_brand -->
 
 
 ## item_imagesテーブル
@@ -92,6 +92,7 @@
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null: false, index: true|
+|item|references|foreign_key: true|
 |ancestry|string|
 
 ### Association
@@ -99,7 +100,7 @@
 - has_many :items
 
 
-## item_brandsテーブル
+<!-- ## item_brandsテーブル
 
 |Column|Type|Options|
 |------|----|-------|
@@ -107,7 +108,7 @@
 
 ### Association
 
-- has_many :items
+- has_many :items -->
 
 
 ## dealingsテーブル
