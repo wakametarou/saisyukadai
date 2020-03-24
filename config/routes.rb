@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get 'users/show'
   root 'items#index'
 
-  resources :items, only: [:index, :new, :create, :show, :destroy] do
+  resources :items do
     resources :dealings, only: :new
   end
 
