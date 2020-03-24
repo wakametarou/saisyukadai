@@ -11,7 +11,7 @@
 -#   %input{ type: "hidden", name: "card_id", value: "" }
 -#   %button 削除する
 
-%body.clearfix 
+.body.clearfix 
   .header
     .header__inner
       .main-header
@@ -67,6 +67,8 @@
               %button 削除する
         .card_info__top--about
           %p 支払い方法について
+      %p.card_info__back
+        = link_to '戻る', 'javascript:history.go(-2)', data: {"turbolinks" => false}
     .side
       %nav.my-nav
         %ul.my-nav-list

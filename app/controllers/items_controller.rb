@@ -24,6 +24,7 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
+    @card = Card.where(user_id: current_user.id).first
 
     respond_to do |format|
       format.json

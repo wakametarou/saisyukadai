@@ -1,3 +1,11 @@
+:javascript
+  function doReload() {
+    window.location.reload();
+  }
+  window.addEventListener('load', function () {
+      setTimeout(doReload, 3000);
+  });
+
 .body
   .header
     .header__inner
@@ -95,7 +103,11 @@
   - if (user_signed_in? && (@item.dealing == nil || @item.dealing[:phase] == false))
     .buy_btn
       %label
-        = link_to "購入する", new_item_dealing_path(@item.id), method: :get
+        - if @card
+          = link_to "購入する", new_item_dealing_path(@item.id), method: :get
+        - else
+          = link_to "支払い方法を登録する", new_card_path, method: :get
+
 .comment
   .comment__area
     コメントがありません

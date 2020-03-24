@@ -11,7 +11,13 @@ Rails.application.routes.draw do
   get 'users/show'
   root 'items#index'
   resources :items, only: [:index, :new, :create, :show] do
-    resources :dealings, only: :new
+    # resources :dealings, only: :new
+    resources :dealings, only: :new do
+      collection do
+        post 'pay', to: 'dealings#pay'
+        get 'done', to: 'dealings#done'
+      end
+    end
   end
 
   resources :card, only: [:new, :show] do
@@ -28,13 +34,13 @@ Rails.application.routes.draw do
 
   resources :users, only: :show
 
-  resources :purchase, only: [:index] do
-    collection do
-      get 'index', to: 'purchase#index'
-      post 'pay', to: 'purchase#pay'
-      get 'done', to: 'purchase#done'
-    end
-  end
+  # resources :purchase, only: [:index] do
+  #   collection do
+  #     get 'index', to: 'purchase#index'
+  #     post 'pay', to: 'purchase#pay'
+  #     get 'done', to: 'purchase#done'
+  #   end
+  # end
 
   resources :users, only: :show
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
