@@ -9,4 +9,7 @@
     = javascript_include_tag 'application'
     %script{ src: "https://ajaxzip3.github.io/ajaxzip3.js" }
   %body
+    .notification
+      - flash.each do |key, value|
+        = content_tag :div, value, class: key
     = yield
