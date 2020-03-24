@@ -13,17 +13,21 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-
-    if @item.save!
-
+    if @item.save
       redirect_to root_path
     else
       render :new
     end
   end
 
+  def edit
+  end
+
+  def update
+  end
+
   def show
-    @item = Item.find(params[:id])
+    set_item
     @card = Card.where(user_id: current_user.id).first
 
     respond_to do |format|
@@ -33,20 +37,31 @@ class ItemsController < ApplicationController
 
   end
 
-  # def pay
-  #   @item = Item.find(params[:id])
-  #   Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
-  #   charge = Payjp::Charge.create(
-  #   amount: @item.price,
-  #   card: params['payjp-token'],
-  #   currency: 'jpy'
-  #   )
-  # end
+  def destroy
+    set_item
+    if (@item.destroy)
+      flash[:notice] = "削除されました"
+      redirect_to items_sold_index_path
+    else
+      flash.now[:alert] = "削除できませんでした"
+      render :show
+    end
+  end
+
+  def edit
+    @item = Item.find(params[:id]);
+  end
+
+  def update
+  end
 
   private
 
   def item_params
-    params.require(:item).permit(:name, :price, :detail, :condition, :delivery_tax_payer, :delivery_from, :delivery_days, :category, :brand, item_images_attributes: [:image]).merge(user_id: current_user.id)
+    params.require(:item).permit(:name, :price, :detail, :condition, :delivery_tax_payer, :delivery_from, :delivery_days, :category_id, :brand, item_images_attributes: [:image, :_destroy, :id]).merge(user_id: current_user.id)
   end
 
+  def set_item
+    @item = Item.find(params[:id])
+  end
 end

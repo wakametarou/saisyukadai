@@ -4,8 +4,8 @@
   .item_form
     = form_for @item do |f|
       .item_sell
-        %h2 
-          商品出品ページ
+        %h2
+          商品編集ページ
       .item_img
         = render 'layouts/error_items', model: f.object
         .item_img__label.bold
@@ -13,14 +13,13 @@
           %span.require
             必須
         .item_img__description
-          最大5枚までアップロードできます
+          最大10枚までアップロードできます
         .post__drop__box__container
           .prev-content
           .label-content
             %pre.label-box
               %label{for: "item_images_attributes_0_image", class: "label-box", id: "label-box--0"}
                 %i.fas.fa-camera
-
           .hidden-content
             = f.fields_for :item_images do |i|
               = i.file_field :image, class: "hidden-field"
@@ -29,7 +28,6 @@
               %input{class:"hidden-field", type: "file", name: "item[item_images_attributes][2][image]", id: "item_images_attributes_2_image"}
               %input{class:"hidden-field", type: "file", name: "item[item_images_attributes][3][image]", id: "item_images_attributes_3_image"}
               %input{class:"hidden-field", type: "file", name: "item[item_images_attributes][4][image]", id: "item_images_attributes_4_image"}
-
       .item_name
         .item_name__form.bold
           .item_name_label
@@ -108,7 +106,7 @@
           販売利益
       .btn
         .exhibition_btn
-          = f.submit "出品する"
+          = f.submit "更新する"
         .return_btn
           %button{type: 'submit'} もどる
   .footer_items_new
