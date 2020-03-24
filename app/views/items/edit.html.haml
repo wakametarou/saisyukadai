@@ -1,0 +1,112 @@
+.user-new
+  %h1.user-new__icon
+    = link_to image_tag('logo.png', class: "user-new__icon__image"), "#"
+  .item_form
+    = form_for @item do |f|
+      .item_sell
+        %h2
+          商品編集ページ
+      .item_img
+        = render 'layouts/error_items', model: f.object
+        .item_img__label.bold
+          出品画像
+          %span.require
+            必須
+        .item_img__description
+          最大10枚までアップロードできます
+        .post__drop__box__container
+          .prev-content
+          .label-content
+            %pre.label-box
+              %label{for: "item_images_attributes_0_image", class: "label-box", id: "label-box--0"}
+                %i.fas.fa-camera
+          .hidden-content
+            = f.fields_for :item_images do |i|
+              = i.file_field :image, class: "hidden-field"
+              %input{class:"hidden-field", type: "file", name: "item[item_images_attributes][0][image]", id: "item_images_attributes_0_image"}
+              %input{class:"hidden-field", type: "file", name: "item[item_images_attributes][1][image]", id: "item_images_attributes_1_image"}
+              %input{class:"hidden-field", type: "file", name: "item[item_images_attributes][2][image]", id: "item_images_attributes_2_image"}
+              %input{class:"hidden-field", type: "file", name: "item[item_images_attributes][3][image]", id: "item_images_attributes_3_image"}
+              %input{class:"hidden-field", type: "file", name: "item[item_images_attributes][4][image]", id: "item_images_attributes_4_image"}
+      .item_name
+        .item_name__form.bold
+          .item_name_label
+            商品名
+            %span.require
+              必須
+          %br/
+          = f.text_field :name
+        .item_description.bold
+          .item_name_label
+            商品の説明
+            %span.require
+              必須
+          %br
+          =f.text_area :detail
+      .item_detail
+        .item_setumei
+          商品の詳細
+        .item_detail__category.bold
+          .item_name__label
+            カテゴリー
+            %span.require
+              必須
+          %br
+          = f.select :category_id, ['レディース','メンズ','ベビー・キッズ','インテリア・住まい・小物','本・音楽・ゲーム','おもちゃ・ホビー・グッズ','コスメ・香水・美容','家電・スマホ・カメラ','スポーツ・レジャー','ハンドメイド','チケット','自動車・オートバイ','その他'], {include_blank: '選択してください'}
+          .item_name__label
+            ブランド
+            %span.any
+              任意
+          %br
+          = f.text_field :brand
+        .item_detail__condition.bold
+          .item_name_label
+            商品の状態
+            %span.require
+              必須
+          %br
+          = f.select :condition, ['新品、未使用','未使用に近い','目立った傷や汚れなし','やや傷や汚れあり','傷や汚れあり','全体的に状態が悪い'], {include_blank: '選択してください'}
+      .item_delivery
+        .item_setumei
+          配送について
+        .item_delivery__burden.bold
+          .item_name_label
+            配送料の負担
+            %span.require
+              必須
+          %br
+          = f.select :delivery_tax_payer, ['送料込み(出品者負担)','着払い(購入者負担)'], {include_blank: '選択してください'}
+        .item_delivery__area.bold
+          .item_name_label
+            発送元の地域
+            %span.require
+              必須
+          %br
+          = f.collection_select :delivery_from, Prefecture.all, :id, :name, {include_blank: '選択してください'}
+        .item_delivery__days.bold
+          .item_name_label
+            発送までの日数
+            %span.require
+              必須
+          %br
+          = f.select :delivery_days, ['１〜２日で発送','２〜３日で発送','４〜７日で発送'], {include_blank: '選択してください'}
+      .item_price
+        .item_setumei
+          価格（¥300〜9,999,999）
+        .item_price__sale.bold
+          .item_name_label
+            販売価格
+            %span.require
+              必須
+          %br/
+          = f.number_field :price
+        .item_price__commission
+          販売手数料（10%）
+        .item_price__profit
+          販売利益
+      .btn
+        .exhibition_btn
+          = f.submit "更新する"
+        .return_btn
+          %button{type: 'submit'} もどる
+  .footer_items_new
