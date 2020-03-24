@@ -24,15 +24,9 @@
 
 |Column|Type|Options|
 |------|----|-------|
-<!-- |first_name|string|null: false|
-|last_name|string|null: false|
-|first_name_kana|string|null: false|
-|last_name_kana|string|null: false| -->
-<!-- |tell|integer|unique: true| -->
 |introduce|text|
 |avatar|string|
-<!-- |birthday|date|null: false| -->
-|user_id|integer|null: false, foreign_key: true|
+|user_id|reference|null: false, foreign_key: true|
 
 ### Association
 
@@ -48,7 +42,7 @@
 |address_number|string|null: false|
 |building|string|
 |tell|integer|unique: true|
-|user_id|integer|null: false, foreign_key: true|
+|user_id|reference|null: false, foreign_key: true|
 
 
 ### Association
@@ -65,12 +59,12 @@
 |price|integer|null: false|
 |detail|text|null: false|
 |condition|integer|null: false|
-|delivery_tax_payer|integer|null: false|
-|delivery_from|integer|null: false|
-|delivery_days|integer|null: false|
-|category_id|integer|null: false, foreign_key: true|
-|brand|integer||
-|user|references|null: false, foreign_key: true|
+|delivery_tax_payer|string|null: false|
+|delivery_from|string|null: false|
+|delivery_days|string|null: false|
+|category_id|string|null: false|
+|brand|string|
+|user_id|integer|null: false, foreign_key: true|
 
 ### Association
 
@@ -86,7 +80,7 @@
 |Column|Type|Options|
 |------|----|-------|
 |image|string|null: false|
-|item|references|foreign_key: true|
+|item_id|references|foreign_key: true|
 
 ### Association
 
@@ -110,7 +104,7 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|name|string||
+|name|string|
 
 ### Association
 
@@ -122,7 +116,7 @@
 |Column|Type|Options|
 |------|----|-------|
 |phase|boolean|defoult: false|
-|item|integer|null: false, foreign_key: true|
+|item_id|integer|null: false, foreign_key: true|
 |user_id|integer|null: false, foreign_key: true|
 
 ### Association
@@ -133,7 +127,7 @@
 
 ## cardsテーブル
 
-|user_id|integer|null: false, foreign_key: true|
+|user_id|reference|null: false, foreign_key: true|
 |customer_id|string|
 
 ### Association

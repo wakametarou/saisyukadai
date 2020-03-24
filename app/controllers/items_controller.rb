@@ -1,5 +1,7 @@
 class ItemsController < ApplicationController
+
   def index
+    @items = Item.all.includes(:item_images)
   end
 
   def new
@@ -9,7 +11,6 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-    # binding.pry
     if @item.save
       redirect_to root_path
     else
@@ -23,11 +24,24 @@ class ItemsController < ApplicationController
   def update
   end
 
-  def destroy
-    @item.destroy
-    redirect_to root_path
+  def show
+    set_item
+    respond_to do |format|
+      format.json
+      format.html
+    end
   end
 
+  def destroy
+    set_item
+    if (@item.destroy)
+      flash[:notice] = "削除されました"
+      redirect_to items_sold_index_path
+    else
+      flash.now[:alert] = "削除できませんでした"
+      render :show
+    end
+  end
 
   private
 
@@ -37,5 +51,5 @@ class ItemsController < ApplicationController
 
   def set_item
     @item = Item.find(params[:id])
- end
+  end
 end
