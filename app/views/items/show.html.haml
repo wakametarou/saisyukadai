@@ -101,22 +101,21 @@
       %li.detail
         = @item.delivery_days
   - if (user_signed_in? && (@item.dealing == nil || @item.dealing[:phase] == false) && @item.user_id != current_user.id)
-        - if (user_signed_in? && (@item.dealing == nil || @item.dealing[:phase] == false) && @item.user_id != current_user.id)
-          - if @card
-            .buy_btn
-              %label
-                = link_to "購入する", new_item_dealing_path(@item.id), method: :get
-          - else
-            .buy_btn
-              %label
-                = link_to "支払い方法を登録する", new_card_path, method: :get
-        - elsif (user_signed_in? && (@item.dealing == nil || @item.dealing[:phase] == false) && @item.user_id == current_user.id)
-          .buy_btn
-            %label
-              = link_to "編集する", "#", method: :get;
-          .buy_btn
-            %label
-              = link_to "削除する", item_path(@item.id), method: :delete;
+    - if @card
+      .buy_btn
+        %label
+          = link_to "購入する", new_item_dealing_path(@item.id), method: :get
+    - else
+      .buy_btn
+        %label
+          = link_to "支払い方法を登録する", new_card_path, method: :get
+  - elsif (user_signed_in? && (@item.dealing == nil || @item.dealing[:phase] == false) && @item.user_id == current_user.id)
+    .buy_btn
+      %label
+        = link_to "編集する", "#", method: :get;
+    .buy_btn
+      %label
+        = link_to "削除する", item_path(@item.id), method: :delete;
 
 .comment
   .comment__area
