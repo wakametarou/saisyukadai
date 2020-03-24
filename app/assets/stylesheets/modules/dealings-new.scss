@@ -136,18 +136,50 @@ body {
                   }
                 }
               }
-            }
-            .user-info {
-              padding-bottom: 0;
-              .buy-btn {
-                border: 1px solid #3ccace;
-                background: #3ccace;
-                color: #fff;
-                width: 100%;
-                line-height: 48px;
-                text-align: center;
-                font-size: 15px;
+              .card{
+                display: flex;
+                margin-top: 20px;
+                &__right{
+                  margin-left: 30px;
+                  &__number{
+                    margin-bottom: 15px;
+                    .bottom{
+                      font-weight: 550;
+                      margin-bottom: 5px;
+                    }
+                  }
+                  &__date{
+                    margin-bottom: 15px;
+                    .bottom{
+                      font-weight: 550;
+                      margin-bottom: 5px;
+                    }
+                  }
+                }
               }
+              .postal_code{
+                margin-top: 20px;
+                margin-bottom: 5px;
+              }
+              .address{
+                display: flex;
+              }
+            }
+          }
+          .paybtn {
+            text-align: center;
+            width: 100%;
+            button{
+              height: 48px;
+              color: white;
+              background-color: #3ccace;
+              border: none;
+              font-size: 17px;
+              cursor: pointer;
+              border: 1px solid #3ccace;
+              background: #3ccace;
+              width: 100%;
+              font-size: 15px;
             }
           }
         }
