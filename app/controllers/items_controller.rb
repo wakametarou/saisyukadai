@@ -37,6 +37,13 @@ class ItemsController < ApplicationController
     end
   end
 
+  def edit
+    @item = Item.find(params[:id]);
+  end
+
+  def update
+  end
+
   private
 
   def item_params
