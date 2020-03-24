@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_17_105501) do
-
+ActiveRecord::Schema.define(version: 2020_03_18_100204) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "sendfirst_name", null: false
@@ -31,6 +30,15 @@ ActiveRecord::Schema.define(version: 2020_03_17_105501) do
     t.index ["user_id"], name: "index_addresses_on_user_id"
   end
 
+  create_table "dealings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.boolean "phase", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "item_id"
+    t.bigint "user_id"
+    t.index ["item_id"], name: "index_dealings_on_item_id"
+    t.index ["user_id"], name: "index_dealings_on_user_id"
+  end
 
   create_table "item_categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -95,6 +103,8 @@ ActiveRecord::Schema.define(version: 2020_03_17_105501) do
   end
 
   add_foreign_key "addresses", "users"
+  add_foreign_key "dealings", "items"
+  add_foreign_key "dealings", "users"
   add_foreign_key "item_categories", "items"
   add_foreign_key "item_images", "items"
   add_foreign_key "items", "users"
