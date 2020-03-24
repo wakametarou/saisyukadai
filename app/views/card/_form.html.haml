@@ -1,4 +1,3 @@
--# = form_with url:pay_card_index_path, method: :post, html: { name: "inputForm" },class:"form" do |f|
 .form__upper
   .form__upper__group
     %label カード番号
@@ -56,7 +55,6 @@
     = text_field_tag "cvc", "", class: "cvc", placeholder: "カード背面3~4桁の番号", maxlength: "4", id: "cvc"
   .form__upper__group.about
     %p.about.fa.fa-question-circle
-      -# = fa_icon 'question-circle'
       %span
       = link_to 'カード裏面の番号とは？', "#", class:'about__registered'
   .form__upper__group.last

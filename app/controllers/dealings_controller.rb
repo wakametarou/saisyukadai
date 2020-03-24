@@ -1,10 +1,10 @@
 class DealingsController < ApplicationController
 
   require 'payjp'
+  before_action :set_item, only: [:new, :done, :pay]
 
   def new
     @address = Address.find_by(user_id: current_user.id)
-    @item = Item.find(params[:item_id])
     @card = Card.where(user_id: current_user.id).first
     Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
     customer = Payjp::Customer.retrieve(@card.customer_id)
@@ -28,19 +28,23 @@ class DealingsController < ApplicationController
   end
 
   def done
-    @item = Item.find(params[:item_id])
   end
 
   def pay
-    @item = Item.find(params[:item_id])
     @dealing = Dealing.create(phase: "true", item_id: params[:item_id], user_id: current_user.id)
     card = Card.where(user_id: current_user.id).first
     Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
     Payjp::Charge.create(
-    :amount => @item.price, #支払金額を入力（itemテーブル等に紐づけても良い）
-    :customer => card.customer_id, #顧客ID
-    :currency => 'jpy', #日本円
+    amount: @item.price, 
+    customer: card.customer_id, 
+    currency: 'jpy', 
   )
-  redirect_to action: 'done' #完了画面に移動
+  redirect_to action: 'done' 
   end
+end
+
+private
+
+def set_item
+  @item = Item.find(params[:item_id])
 end
