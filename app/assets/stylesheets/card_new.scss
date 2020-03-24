@@ -1,0 +1,36 @@
+.card_new{
+  height: 100%;
+  width: 100%;
+  background-color: rgb(245, 245, 245);
+  &__icon{
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &__image{
+      height: 60px;
+      width: 210px;
+    }
+  }
+  &__form{
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    margin: 0 auto;
+    &--title{
+      height: 100px;
+      border-bottom: solid 1px rgb(245, 245, 245);
+      text-align: center;
+      h2{
+        font-size: 25px;
+        font-weight: 550;
+        line-height: 100px;
+      }
+    }
+  }
+  &__footer{
+    height: 200px;
+    background: rgb(245, 245, 245);
+  }
+}
+  
