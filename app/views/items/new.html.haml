@@ -7,22 +7,29 @@
         %h2 
           商品出品ページ
       .item_img
+        = render 'layouts/error_items', model: f.object
         .item_img__label.bold
           出品画像
           %span.require
             必須
         .item_img__description
-          最大10枚までアップロードできます
-        .item_img__field 
-          %label
+          最大5枚までアップロードできます
+        .post__drop__box__container
+          .prev-content
+          .label-content
+            %pre.label-box
+              %label{for: "item_images_attributes_0_image", class: "label-box", id: "label-box--0"}
+                %i.fas.fa-camera
+
+          .hidden-content
             = f.fields_for :item_images do |i|
-              = i.file_field :image
-            %p
-              ドラッグ & ドロップ
-              %br/
-              または
-              %br/
-              クリックしてファイルをアップロード
+              = i.file_field :image, class: "hidden-field"
+              %input{class:"hidden-field", type: "file", name: "item[item_images_attributes][0][image]", id: "item_images_attributes_0_image"}
+              %input{class:"hidden-field", type: "file", name: "item[item_images_attributes][1][image]", id: "item_images_attributes_1_image"}
+              %input{class:"hidden-field", type: "file", name: "item[item_images_attributes][2][image]", id: "item_images_attributes_2_image"}
+              %input{class:"hidden-field", type: "file", name: "item[item_images_attributes][3][image]", id: "item_images_attributes_3_image"}
+              %input{class:"hidden-field", type: "file", name: "item[item_images_attributes][4][image]", id: "item_images_attributes_4_image"}
+
       .item_name
         .item_name__form.bold
           .item_name_label
@@ -37,7 +44,7 @@
             %span.require
               必須
           %br
-          =f.text_field :detail
+          =f.text_area :detail
       .item_detail
         .item_setumei
           商品の詳細
@@ -47,7 +54,7 @@
             %span.require
               必須
           %br
-          = f.select :category, ['レディース','メンズ','ベビー・キッズ','インテリア・住まい・小物','本・音楽・ゲーム','おもちゃ・ホビー・グッズ','コスメ・香水・美容','家電・スマホ・カメラ','スポーツ・レジャー','ハンドメイド','チケット','自動車・オートバイ','その他']
+          = f.select :category_id, ['レディース','メンズ','ベビー・キッズ','インテリア・住まい・小物','本・音楽・ゲーム','おもちゃ・ホビー・グッズ','コスメ・香水・美容','家電・スマホ・カメラ','スポーツ・レジャー','ハンドメイド','チケット','自動車・オートバイ','その他'], {include_blank: '選択してください'}
           .item_name__label
             ブランド
             %span.any
@@ -77,7 +84,7 @@
             %span.require
               必須
           %br
-          = f.select :delivery_from, ['北海道','青森県','東京都','京都府','大阪府','広島県','福岡県','沖縄県','未定'], {include_blank: '選択してください'}
+          = f.collection_select :delivery_from, Prefecture.all, :id, :name, {include_blank: '選択してください'}
         .item_delivery__days.bold
           .item_name_label
             発送までの日数
