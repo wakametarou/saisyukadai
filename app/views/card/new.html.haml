@@ -1,3 +1,13 @@
+:javascript
+  $(document).ready( function(){
+    if (window.name != "test") {
+      location.reload();
+      window.name = "test";
+    } else {
+      window.name = "";
+      }
+  });
+
 .body.clearfix 
   .header
     .header__inner
