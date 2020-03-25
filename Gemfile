@@ -79,7 +79,7 @@ gem 'active_hash'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'pry-rails'
+gem 'payjp'
 gem 'jquery-rails'
+gem 'dotenv-rails'
 gem 'rails-i18n'
-
-
