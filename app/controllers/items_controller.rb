@@ -1,7 +1,9 @@
 class ItemsController < ApplicationController
 
   def index
+
     @items = Item.all.includes(:item_images)
+
   end
 
   def new
@@ -26,10 +28,13 @@ class ItemsController < ApplicationController
 
   def show
     set_item
+    @card = Card.where(user_id: current_user.id).first
+
     respond_to do |format|
       format.json
       format.html
     end
+
   end
 
   def destroy
