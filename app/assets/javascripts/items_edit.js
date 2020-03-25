@@ -4,7 +4,7 @@ $(function(){
     //プレビューのhtmlを定義
     function buildHTML(count) {
       var html = `<div class="preview-box" id="preview-box__${count}">
-                    <div class="upper-box">
+                    <div class="upper-box" id="input_image_number_${count}">
                       <img src="" alt="preview">
                     </div>
                     <div class="lower-box">
@@ -57,12 +57,14 @@ $(function(){
         for: `item_item_images_attributes_${index}_image`,
       });
     });
-    var count = $('.preview-box').length;
+    $('.upper-box').each(function(index, box){
+      $(box).attr("id", `input_image_number_${index}`);
+    });
+    let count = $('.preview-box').length;
     //プレビューが5あるときは、投稿ボックスを消しておく
     if (count == 5) {
       $('.label-content').hide();
     }
-
 
 
 
@@ -87,25 +89,20 @@ $(function(){
       reader.onload = function() {
         var image = this.result;
         // 編集ボタンを押した時 or 新規に登録する時
-        if (($(`#item_item_images_attributes_${id}_id`).val() > 0 ) && deleteFile.length == 0) {
-          $(`.upper-box#item_item_images_attributes_${id}_image`).empty();
-          $(`.upper-box#item_item_images_attributes_${id}_image`).append(`<img src="${image}" alt="preview">`);
-        } else {
           //プレビューが元々なかった場合はhtmlを追加
-          if ($(`#preview-box__${id}`).length == 0) {
-            var count = $('.preview-box').length;
-            var html = buildHTML(id);
-            //ラベルの直前のプレビュー群にプレビューを追加
-            var prevContent = $('.label-content').prev();
-            $(prevContent).append(html);
-          }
-          //イメージを追加
-          $(`#preview-box__${id} img`).attr('src', `${image}`);
+        if ($(`#preview-box__${id}`).length == 0) {
           var count = $('.preview-box').length;
-          //プレビューが5個あったらラベルを隠す 
-          if (count == 5) { 
-            $('.label-content').hide();
-          }
+          var html = buildHTML(id);
+          //ラベルの直前のプレビュー群にプレビューを追加
+          var prevContent = $('.label-content').prev();
+          $(prevContent).append(html);
+        }
+        //イメージを追加
+        $(`#preview-box__${id} img`).attr('src', `${image}`);
+        var count = $('.preview-box').length;
+        //プレビューが5個あったらラベルを隠す 
+        if (count == 5) { 
+          $('.label-content').hide();
         }
 
         // MySQL削除履歴を消す
