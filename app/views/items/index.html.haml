@@ -133,46 +133,25 @@
               新規投稿商品
         .item-lists
           - @items.each do |item|
-            - if (user_signed_in? == false)
-              .item-list
-                = link_to item_path(item.id) do
-                  %figure.item-list_image
-                    = image_tag("#{item.item_images[0][:image]}", class: "item__image")
-                    - if (item.dealing != nil && item.dealing.phase == true)
-                      .soldout
-                        SOLD OUT
-                  .bodey
-                    %h3.name
-                      = item.name
-                    .data
-                      %ul
-                        %li
-                          = number_to_currency(item.price, unit: "円", format: "%n%u", precision: 0)
-                        %li
-                          %i.fa.fa-star
-                          0
-                      %p
-                        (税込)
-            - elsif (current_user.id != item.user_id)
-              .item-list
-                = link_to item_path(item.id) do
-                  %figure.item-list_image
-                    = image_tag("#{item.item_images[0][:image]}", class: "item__image")
-                    - if (item.dealing != nil && item.dealing.phase == true)
-                      .soldout
-                        SOLD OUT
-                  .bodey
-                    %h3.name
-                      = item.name
-                    .data
-                      %ul
-                        %li
-                          = number_to_currency(item.price, unit: "円", format: "%n%u", precision: 0)
-                        %li
-                          %i.fa.fa-star
-                          0
-                      %p
-                        (税込)
+            .item-list
+              = link_to item_path(item.id) do
+                %figure.item-list_image
+                  = image_tag("#{item.item_images[0][:image]}", class: "item__image")
+                  - if (item.dealing != nil && item.dealing.phase == true)
+                    .soldout
+                      SOLD OUT
+                .bodey
+                  %h3.name
+                    = item.name
+                  .data
+                    %ul
+                      %li
+                        = number_to_currency(item.price, unit: "円", format: "%n%u", precision: 0)
+                      %li
+                        %i.fa.fa-star
+                        0
+                    %p
+                      (税込)
 
     %section.pickup
       %h2.head
