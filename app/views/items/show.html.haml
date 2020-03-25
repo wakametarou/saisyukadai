@@ -1,9 +1,11 @@
 :javascript
-  function doReload() {
-    window.location.reload();
-  }
-  window.addEventListener('load', function () {
-      setTimeout(doReload, 3000);
+  $(document).ready( function(){
+    if (window.name != "test") {
+      location.reload();
+      window.name = "test";
+    } else {
+      window.name = "";
+      }
   });
 
 .body
