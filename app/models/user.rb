@@ -19,6 +19,11 @@ class User < ApplicationRecord
                   with: /\A[a-z0-9]+\z/i,
                   message: "は半角英数字で入力して下さい"
                 }
+  validates :email, presence: true,
+                format: {
+                  with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i,
+                  message: "は正しいメールアドレスを入力して下さい"
+                }
   has_many :items
   has_many :dealings
   has_one :profile
