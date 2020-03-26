@@ -105,11 +105,6 @@ $(function(){
           $('.label-content').hide();
         }
 
-        // MySQL削除履歴を消す
-        if (deleteFile.length > 0) {
-          deleteFile.shift();
-        }
-
         //ラベルのwidth操作
         setLabel();
         //ラベルのidとforの値を変更
@@ -121,6 +116,10 @@ $(function(){
             id: `label-box--${deleteFile[0].replace(/[^0-9]/g, '')}`,
             for: `item_item_images_attributes_${deleteFile[0].replace(/[^0-9]/g, '')}_image`
           });
+        }
+        // MySQL削除履歴を消す
+        if (deleteFile.length > 0) {
+          deleteFile.shift();
         }
       }
     });
