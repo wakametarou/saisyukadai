@@ -9,7 +9,7 @@
       .inner
         .item-box
           %h3.item-image
-            = image_tag("#{@item.item_images[0][:image]}", class: "buy-image")
+            = image_tag("/images/#{@item.item_images[0][:image]}", class: "buy-image")
           .item-data
             %p.item-name
               = @item.name
@@ -48,7 +48,7 @@
             - else
               .card
                 .card__image
-                  = image_tag "#{asset_path @card_image}",width:'120',height:'72', alt:'master-card'
+                  = image_tag "/images/#{@card_image}",width:'120',height:'72', alt:'master-card'
                 .card__right
                   .card__right__number
                     %p.bottom カード番号
