@@ -110,11 +110,12 @@
       .label-content{
         margin-bottom: 10px;
         width: 620px;
+        background: #f5f5f5;
         .label-box {
           display: block;
           border: 1px dashed #ccc;
           position: relative;
-          background: #f5f5f5;
+          // background: #f5f5f5;
           width: 100%;
           height: 162px;
           cursor: pointer;
@@ -176,18 +177,29 @@
   .item_detail{
     padding: 40px;
     border-bottom: solid 1px rgb(245, 245, 245);
-    &__category{
+    .listing-item-detail__category{
       margin-bottom: 20px;
+      .listing-select-wrapper {
+        margin-top: 10px;
+        .listing-select-wrapper__box--select {
+          margin-top: 5px;
+        }
+      }
+      .listing-select-wrapper__box--select {
+        margin-bottom: 5px;
+      }
+    }
+    .item_name__label {
       input{
         width: 100%;
         height: 48px;
         border: 1px solid #ccc;
-        margin: 0;
+        margin: 15px 0 0;
         padding: 0 16px;
       }
     }
-    &__condition{
-      margin-bottom: 20px;
+    .item_detail__condition{
+      margin: 25px 0 20px;
     }
   }
   .item_delivery{
