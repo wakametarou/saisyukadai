@@ -55,7 +55,10 @@
         .card_info__top--about
           %p 支払い方法について
       %p.card_info__back
-        = link_to '戻る', 'javascript:history.go(-2)', data: {"turbolinks" => false}
+        - if @path[:controller] == "users"
+          = link_to '戻る', users_show_path(current_user.id)
+        - else
+          = link_to '戻る', 'javascript:history.go(-2)', data: {"turbolinks" => false}
     .side
       %nav.my-nav
         %ul.my-nav-list

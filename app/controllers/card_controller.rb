@@ -3,7 +3,6 @@ class CardController < ApplicationController
   require "payjp"
 
   def new
-    @url = request.referer
     @card = Card.where(user_id: current_user.id)
     redirect_to action: "show" if @card.exists?
   end
@@ -38,14 +37,14 @@ class CardController < ApplicationController
       customer.delete
       card.delete
     end
-      redirect_to action: "new"
+      redirect_to users_show_path(current_user.id)
   end
 
   
   
   def show 
-    @url = request.referer
     @card = Card.where(user_id: current_user.id).first
+    @path = Rails.application.routes.recognize_path(request.referer)
     if @card.blank?
       redirect_to action: "new" 
     else
