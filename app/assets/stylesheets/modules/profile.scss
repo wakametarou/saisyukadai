@@ -282,41 +282,6 @@
         }
         .my-nav-list{
           margin: 8px 0 0;
-          li{
-            
-          }
-        }
-      }
-    }
-  }
-  .app-banner{
-    background-image: url("bg-appBanner-pict.jpg");
-    padding: 100px 40px;
-    background-position: center;
-    background-size: cover;
-    .inner{
-      color: white;
-      text-align: center;
-      .inner__title{
-        font-size: 24px;
-        font-weight: bold;
-        text-shadow: 0 0 5px rgba(0,0,0,0.4);
-        line-height: 1.4;
-      }
-      .inner__text{
-        font-size: 35px;
-        text-shadow: 0 0 5px rgba(0,0,0,0.4);
-      }
-      .inner__icon{
-        display: flex;
-        justify-content: center;
-        margin-top: 20px;
-        .app__image{
-          width: 180px;
-          margin-right: 15px;
-        }
-        .google__image{
-          width: 180px;
         }
       }
     }
