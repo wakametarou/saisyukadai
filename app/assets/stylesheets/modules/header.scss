@@ -118,7 +118,7 @@
     .main-vizual{
       width: 100%;
       height: 560px;
-      background-image: url('danjyo.jpg');
+      background-image: image-url('danjyo.jpg');
       background-size: cover;
       background-position: center;
       position: relative;
@@ -251,7 +251,7 @@
       }
     }
     .top-dl{
-      background-image: url('bg-topMiddleDl-pict.jpg');
+      background-image: image-url('bg-topMiddleDl-pict.jpg');
       background-position: bottom right;
       height: 400px;
       background-size: cover;
@@ -440,7 +440,7 @@
     }
   }
   .app-banner{
-    background-image: url("bg-appBanner-pict.jpg");
+    background-image: image-url('bg-appBanner-pict.jpg');
     padding: 100px 40px;
     background-position: center;
     background-size: cover;
