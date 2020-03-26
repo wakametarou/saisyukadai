@@ -8,7 +8,7 @@
       .doneitem-name
         = @item.name
       .doneitem-image
-        = image_tag("#{@item.item_images[0][:image]}", class: "buy-image")
+        = image_tag("/images/#{@item.item_images[0][:image]}", class: "buy-image")
       .doneitem-price
         = @item.price
         %span 円
