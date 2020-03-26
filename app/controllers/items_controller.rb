@@ -20,12 +20,6 @@ class ItemsController < ApplicationController
     end
   end
 
-  def edit
-  end
-
-  def update
-  end
-
   def show
     set_item
     @card = Card.where(user_id: current_user.id).first
@@ -49,10 +43,16 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    @item = Item.find(params[:id]);
+    @item = Item.find(params[:id])
   end
 
   def update
+    @item = Item.find(params[:id])
+    if (@item.update(item_params))
+      redirect_to item_path(params[:id])
+    else
+      render :edit
+    end
   end
 
   private

@@ -114,7 +114,7 @@
   - elsif (user_signed_in? && (@item.dealing == nil || @item.dealing[:phase] == false) && @item.user_id == current_user.id)
     .buy_btn
       %label
-        = link_to "編集する", "#", method: :get;
+        = link_to "編集する", edit_item_path(@item.id), method: :get;
     .buy_btn
       %label
         = link_to "削除する", item_path(@item.id), method: :delete;
