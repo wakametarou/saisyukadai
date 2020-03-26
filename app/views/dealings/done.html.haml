@@ -1,0 +1,19 @@
+%h1.user-new__icon
+  = link_to image_tag('logo.png', class: "user-new__icon__image"), "#"
+%main.single-main
+  %section.container
+    %h2.head
+      購入が完了しました！
+    .doneitem-box
+      .doneitem-name
+        = @item.name
+      .doneitem-image
+        = image_tag("/images/#{@item.item_images[0][:image]}", class: "buy-image")
+      .doneitem-price
+        = @item.price
+        %span 円
+      .doneitem-button
+        = link_to "/" do
+          トップページに戻る
+      .doneitem-brank
+    .done-item__footer

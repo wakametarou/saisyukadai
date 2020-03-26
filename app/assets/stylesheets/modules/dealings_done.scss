@@ -1,0 +1,37 @@
+  .doneitem-box{
+  text-align: center;
+  .doneitem-name{
+    margin-bottom: 10px;
+    font-size: 20px;
+  }
+  .doneitem-image{
+    margin-bottom: 10px;
+  }
+  .doneitem-price{
+    margin-bottom: 30px;
+    font-size: 20px;
+  }
+  .doneitem-button{
+    padding-bottom: 40px;
+    height: 48px;
+    margin: 0 auto;
+    border: 1px solid #3ccace;
+    background: #3ccace;
+    color: #fff;
+    width: 40%;
+    line-height: 48px;
+    text-align: center;
+    font-size: 15px;
+    cursor: pointer;
+    a{
+      color: white;
+    }
+  }
+  .doneitem-brank{
+    height: 40px;
+  }
+}
+.done-item__footer{
+  background-color: rgb(245, 245, 245);
+  height: 300px;
+}

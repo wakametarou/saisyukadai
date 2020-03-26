@@ -13,21 +13,26 @@
           %span.require
             必須
         .item_img__description
-          最大10枚までアップロードできます
+          最大5枚までアップロードできます
         .post__drop__box__container
           .prev-content
+            - @item.item_images.each do |image|
+              .preview-box
+                .upper-box
+                  = image_tag "/images/#{image[:image]}", width: "112", height: "112", alt: "preview"
+                .lower-box
+                  %label.update-box
+                    .edit-btn 編集
+                  .delete-box
+                    .delete-btn
+                      %span 削除
           .label-content
             %pre.label-box
-              %label{for: "item_images_attributes_0_image", class: "label-box", id: "label-box--0"}
+              %label{for: "item_item_images_attributes_0_image", class: "label-box", id: "label-box--0"}
                 %i.fas.fa-camera
           .hidden-content
             = f.fields_for :item_images do |i|
               = i.file_field :image, class: "hidden-field"
-              %input{class:"hidden-field", type: "file", name: "item[item_images_attributes][0][image]", id: "item_images_attributes_0_image"}
-              %input{class:"hidden-field", type: "file", name: "item[item_images_attributes][1][image]", id: "item_images_attributes_1_image"}
-              %input{class:"hidden-field", type: "file", name: "item[item_images_attributes][2][image]", id: "item_images_attributes_2_image"}
-              %input{class:"hidden-field", type: "file", name: "item[item_images_attributes][3][image]", id: "item_images_attributes_3_image"}
-              %input{class:"hidden-field", type: "file", name: "item[item_images_attributes][4][image]", id: "item_images_attributes_4_image"}
       .item_name
         .item_name__form.bold
           .item_name_label

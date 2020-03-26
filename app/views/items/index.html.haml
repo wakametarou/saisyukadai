@@ -2,7 +2,7 @@
   .header
     .header__inner
       .main-header
-        %h1.icon 
+        %h1.icon
           = link_to image_tag('logo.png', class: "icon__image"), '#'
         .search-box
           .form
@@ -12,8 +12,8 @@
                 = image_tag('search.png', class: "search-button__image")
 
       .nav
-        %ul.list-left 
-          %li.list-left__first 
+        %ul.list-left
+          %li.list-left__first
             = link_to "#" do
               カテゴリー
           %li.list-left__last
@@ -46,7 +46,7 @@
         .content__btn
           = link_to image_tag('app.svg', class: "app__image"), '#'
           = link_to image_tag('google.svg', class: "google__image"), '#'
-    
+
     %section.introduction
       %h2.subtitle
         FURIMAが選ばれる３つの理由
@@ -60,7 +60,7 @@
             =" ですぐに出品 "
           %p.list_description
             スマホで入力するだけで簡単に出品できる！
-        
+
         %li.list
           .list_pict
             %span.number 2
@@ -70,7 +70,7 @@
             =" で使いやすい "
           %p.list_description
             めんどくさい入力は必要なく、検索も購入もスムーズ！
-      
+
         %li.list__last
           .list_pict
             %span.number 3
@@ -80,7 +80,7 @@
             %span{style: "color: #3ccace"}> 業界最安
           %p.list_description
             最大３％でお得に出品＆購入！
-    
+
     %section.top-dl
       .top-dl__inner
         %h2.subtitle
@@ -94,7 +94,7 @@
         .btn
           = link_to image_tag('app.svg', class: "app__image"), '#'
           = link_to image_tag('google.svg', class: "google__image"), '#'
-    
+
     %section.point
       %h2.head
         FURIMAの特徴
@@ -106,7 +106,7 @@
             簡単に売り買いできる
           %p.item__text
             スマホひとつで、いつでもどこでも簡単に出品・購入が可能！
-        
+
         %section.item
           %fugure.item__image
           = image_tag('icon-03.png', class: "icon__image")
@@ -114,7 +114,7 @@
             売上金は即日振込みに対応
           %p.item__text
             午前九時までに振り込みを依頼いただければ、翌日に指定の口座に入金いたします！
-        
+
         %section.item
           %fugure.item__image
           = image_tag('icon-04.png', class: "icon__image")
@@ -122,109 +122,66 @@
             様々な支払いに対応
           %p.item__text
             お支払いは、クレジットカードだけでなく、ポイントや売上金など多彩な方法があります。
-    
+
     %section.pickup
       %h2.head
         ピックアップカテゴリー
       .item-box
-        .item-head 
+        .item-head
           %h3.title
             = link_to "#" do
               新規投稿商品
         .item-lists
           - @items.each do |item|
-            - if (user_signed_in? == false)
-              .item-list
-                = link_to item_path(item.id) do
-                  %figure.item-list_image
-                    = image_tag("#{item.item_images[0][:image]}", class: "item__image")
-                    - if (item.dealing != nil && item.dealing.phase == true)
-                      .soldout
-                        SOLD OUT
-                  .bodey
-                    %h3.name
-                      = item.name
-                    .data
-                      %ul
-                        %li
-                          = number_to_currency(item.price, unit: "円", format: "%n%u", precision: 0)
-                        %li
-                          %i.fa.fa-star
-                          0
-                      %p
-                        (税込)
-            - elsif (current_user.id != item.user_id)
-              .item-list
-                = link_to item_path(item.id) do
-                  %figure.item-list_image
-                    = image_tag("#{item.item_images[0][:image]}", class: "item__image")
-                    - if (item.dealing != nil && item.dealing.phase == true)
-                      .soldout
-                        SOLD OUT
-                  .bodey
-                    %h3.name
-                      = item.name
-                    .data
-                      %ul
-                        %li
-                          = number_to_currency(item.price, unit: "円", format: "%n%u", precision: 0)
-                        %li
-                          %i.fa.fa-star
-                          0
-                      %p
-                        (税込)
+            .item-list
+              = link_to item_path(item.id) do
+                %figure.item-list_image
+                  = image_tag("/images/#{item.item_images[0][:image]}", class: "item__image")
+                  - if (item.dealing != nil && item.dealing.phase == true)
+                    .soldout
+                      SOLD OUT
+                .bodey
+                  %h3.name
+                    = item.name
+                  .data
+                    %ul
+                      %li
+                        = number_to_currency(item.price, unit: "円", format: "%n%u", precision: 0)
+                      %li
+                        %i.fa.fa-star
+                        0
+                    %p
+                      (税込)
 
-    
     %section.pickup
       %h2.head
         ピックアップブランド
       .item-box
-        .item-head 
+        .item-head
           %h3.title
-            = link_to "#" do 
+            = link_to "#" do
               アーカイバ
-        .item-lists 
+        .item-lists
           - @items.each do |item|
-            - if (user_signed_in? == false)
-              .item-list
-                = link_to item_path(item.id) do
-                  %figure.item-list_image
-                    = image_tag("#{item.item_images[0][:image]}", class: "item__image")
-                    - if (item.dealing != nil && item.dealing.phase == true)
-                      .soldout
-                        SOLD OUT
-                  .bodey
-                    %h3.name
-                      = item.name
-                    .data
-                      %ul
-                        %li
-                          = number_to_currency(item.price, unit: "円", format: "%n%u", precision: 0)
-                        %li
-                          %i.fa.fa-star
-                          0
-                      %p
-                        (税込)
-            - elsif (current_user.id != item.user_id)
-              .item-list
-                = link_to item_path(item.id) do
-                  %figure.item-list_image
-                    = image_tag("#{item.item_images[0][:image]}", class: "item__image")
-                    - if (item.dealing != nil && item.dealing.phase == true)
-                      .soldout
-                        SOLD OUT
-                  .bodey
-                    %h3.name
-                      = item.name
-                    .data
-                      %ul
-                        %li
-                          = number_to_currency(item.price, unit: "円", format: "%n%u", precision: 0)
-                        %li
-                          %i.fa.fa-star
-                          0
-                      %p
-                        (税込)
+            .item-list
+              = link_to item_path(item.id) do
+                %figure.item-list_image
+                  = image_tag("/images/#{item.item_images[0][:image]}", class: "item__image")
+                  - if (item.dealing != nil && item.dealing.phase == true)
+                    .soldout
+                      SOLD OUT
+                .bodey
+                  %h3.name
+                    = item.name
+                  .data
+                    %ul
+                      %li
+                        = number_to_currency(item.price, unit: "円", format: "%n%u", precision: 0)
+                      %li
+                        %i.fa.fa-star
+                        0
+                    %p
+                      (税込)
 
   %aside.app-banner
     .inner
@@ -237,8 +194,8 @@
         = link_to image_tag('google.svg', class: "google__image"), '#'
 
   .top-footer
-    %ul.contents 
-      %li.content 
+    %ul.contents
+      %li.content
         %h2.content__tittle
           FURIMAについて
         %ul.lists
@@ -254,8 +211,8 @@
           %li.list
             = link_to "#" do
               ポイントに関する特約
-      
-      %li.content 
+
+      %li.content
         %h2.content__tittle
           FURIMAを見る
         %ul.lists
@@ -265,8 +222,8 @@
           %li.list
             = link_to "#" do
               ブランド一覧
-      
-      %li.content 
+
+      %li.content
         %h2.content__tittle
           ヘルプ＆ガイド
         %ul.lists
@@ -291,4 +248,3 @@
         出品する
       .sell-btn__icon
         = image_tag('icon_camera.png', class: "sell-icon__image")
-

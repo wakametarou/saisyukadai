@@ -2,7 +2,9 @@ class ItemsController < ApplicationController
   before_action :set_item, except: [:index,:new,:create,:destroy,:get_category_children,:get_category_grandchildren]
   
   def index
+
     @items = Item.all.includes(:item_images)
+
   end
 
   def new
@@ -31,10 +33,13 @@ class ItemsController < ApplicationController
 
   def show
     set_item
+    @card = Card.where(user_id: current_user.id).first
+
     respond_to do |format|
       format.json
       format.html
     end
+
   end
 
   def destroy
@@ -49,10 +54,16 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    @item = Item.find(params[:id]);
+    @item = Item.find(params[:id])
   end
 
   def update
+    @item = Item.find(params[:id])
+    if (@item.update(item_params))
+      redirect_to item_path(params[:id])
+    else
+      render :edit
+    end
   end
 
   private

@@ -1,8 +1,18 @@
+:javascript
+  $(document).ready( function(){
+    if (window.name != "test") {
+      location.reload();
+      window.name = "test";
+    } else {
+      window.name = "";
+      }
+  });
+
 .body
   .header
     .header__inner
       .main-header
-        %h1.icon 
+        %h1.icon
           = link_to image_tag('logo.png', class: "icon__image"), root_path
         .search-box
           .form
@@ -11,8 +21,8 @@
               .search-button
                 = image_tag('search.png', class: "search-button__image")
       .nav
-        %ul.list-left 
-          %li.list-left__first 
+        %ul.list-left
+          %li.list-left__first
             = link_to "#" do
               カテゴリー
           %li.list-left__last
@@ -38,11 +48,11 @@
     - if (@item.dealing != nil && @item.dealing[:phase] == true)
       .soldout_neo
         SOLD OUT
-    = image_tag "#{@item.item_images[0][:image]}", size: "300x300", class: "main_image"
+    = image_tag "/images/#{@item.item_images[0][:image]}", size: "300x300", class: "main_image"
     %ul.stock
       - @item.item_images.each do |image|
         %li.stock_image{data: {image: {id: image[:image]}}}
-          = image_tag "#{image[:image]}", size: "80x80"
+          = image_tag "/images/#{image[:image]}", size: "80x80"
   .price_table
     .price
       = number_to_currency(@item.price, unit: "円", format: "%n%u", precision: 0)
@@ -93,19 +103,22 @@
       %li.detail
         = @item.delivery_days
   - if (user_signed_in? && (@item.dealing == nil || @item.dealing[:phase] == false) && @item.user_id != current_user.id)
-    .buy_btn
-      %label
-        = link_to "購入する", new_item_dealing_path(@item.id), method: :get
+    - if @card
+      .buy_btn
+        %label
+          = link_to "購入する", new_item_dealing_path(@item.id), method: :get
+    - else
+      .buy_btn
+        %label
+          = link_to "支払い方法を登録する", new_card_path, method: :get
   - elsif (user_signed_in? && (@item.dealing == nil || @item.dealing[:phase] == false) && @item.user_id == current_user.id)
     .buy_btn
       %label
-        = link_to "編集する", "#", method: :get;
+        = link_to "編集する", edit_item_path(@item.id), method: :get;
     .buy_btn
       %label
         = link_to "削除する", item_path(@item.id), method: :delete;
-  - if (@flag == 1)
-    .message
-      削除できませんでした
+
 .comment
   .comment__area
     コメントがありません
@@ -127,8 +140,8 @@
 .space_neo
 .body
   .top-footer
-    %ul.contents 
-      %li.content 
+    %ul.contents
+      %li.content
         %h2.content__tittle
           FURIMAについて
         %ul.lists
@@ -144,8 +157,8 @@
           %li.list
             = link_to "#" do
               ポイントに関する特約
-      
-      %li.content 
+
+      %li.content
         %h2.content__tittle
           FURIMAを見る
         %ul.lists
@@ -155,8 +168,8 @@
           %li.list
             = link_to "#" do
               ブランド一覧
-      
-      %li.content 
+
+      %li.content
         %h2.content__tittle
           ヘルプ＆ガイド
         %ul.lists

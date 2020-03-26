@@ -3,7 +3,7 @@
     .header__inner
       .main-header
         %h1.icon 
-          = link_to image_tag('logo.png', class: "icon__image"), '#'
+          = link_to image_tag('logo.png', class: "icon__image"), "/"
         .search-box
           .form
             %input{type: "text",class: "search-box__text", placeholder: "キーワードから探す"}
@@ -42,7 +42,7 @@
             = link_to item_path(item.id) do
               - if (current_user.id == item.user_id && item.dealing == nil)
                 %figure.item-list_image-sold
-                  = image_tag("#{item.item_images[0][:image]}", class: "item-list_image_image")
+                  = image_tag("/images/#{item.item_images[0][:image]}", class: "item-list_image_image")
                 .bodey-sold
                   %h3.name-sold
                     = item.name
@@ -136,7 +136,7 @@
               発送元・お届け先住所変更
               %i.fa.fa-angle-right
           %li
-            =link_to "#" do
+            =link_to new_card_path do
               支払い方法
               %i.fa.fa-angle-right
           %li

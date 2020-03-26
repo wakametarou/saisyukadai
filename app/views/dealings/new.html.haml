@@ -9,15 +9,16 @@
       .inner
         .item-box
           %h3.item-image
-            = image_tag("a007.png", class: "buy-image")
+            = image_tag("/images/#{@item.item_images[0][:image]}", class: "buy-image")
           .item-data
             %p.item-name
-              商品名
+              = @item.name
             %p.item-price
               %span
-                ¥ 300円
+                = number_to_currency(@item.price, unit: "円", format: "%n%u", precision: 0)
               %span.item-fee
-                (税込) 着払い
+                (税込) 
+                = @item.delivery_tax_payer
     %section.item
       .inner
         %form.buy-form
@@ -27,7 +28,7 @@
                 支払い金額
               .price
                 %span
-                  ¥ 300
+                  = number_to_currency(@item.price, unit: "円", format: "%n%u", precision: 0)
           %ul.have-point
             %li.point-box
               .use-point
@@ -38,21 +39,45 @@
             .user-inner
               %h3
                 支払い方法
+            - if @default_card_information.blank?
               = link_to "#" do
                 %p.info-text
                   %i.fas.fa-plus-circle
                   %span.register
                     登録してください
+            - else
+              .card
+                .card__image
+                  = image_tag "/images/#{@card_image}",width:'120',height:'72', alt:'master-card'
+                .card__right
+                  .card__right__number
+                    %p.bottom カード番号
+                    = "**** **** **** " + @default_card_information.last4
+                  .card__right__date
+                    %p.bottom 有効期限
+                    - exp_month = @default_card_information.exp_month.to_s
+                    - exp_year = @default_card_information.exp_year.to_s.slice(2,3)
+                    = exp_month + " / " + exp_year
           %section.user-info
             .user-inner
               %h3
                 発送先
-              = link_to "#" do
-                %p.info-text
-                  %i.fas.fa-plus-circle
-                  %span.register
-                    登録してください
+            .postal_code
+              %i.fa.fa-tenge
+              = @address.postal_code
+            .prefecture 
+              = @address.prefecture
+            .address
+              .city
+                = @address.city
+              .address_number
+                = @address.address_number
+            -if @address.building.present?
+              .buildung
+                = @address.building
+            -else
           %section.user-info
-            %button{type: "submit", class: "buy-btn"}
-              購入する
-.user-new__footer
+        .paybtn
+          = form_tag(action: :pay, method: :post) do
+            %button 購入する
+  .user-new__footer
