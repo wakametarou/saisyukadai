@@ -10,7 +10,11 @@ Rails.application.routes.draw do
   end
   get 'users/show'
   root 'items#index'
-  resources :items, only: [:index, :new, :create, :show] do
+  resources :items do
+    collection do
+      get 'get_category_children', defaults: { format: 'json' }
+      get 'get_category_grandchildren', defaults: { format: 'json' }
+    end
     resources :dealings, only: :new do
       collection do
         post 'pay', to: 'dealings#pay'
@@ -25,10 +29,6 @@ Rails.application.routes.draw do
       post 'pay', to: 'card#pay'
       post 'delete', to: 'card#delete'
     end
-  end
-
-  resources :items do
-    resources :dealings, only: :new
   end
 
   resources :users, only: [:show, :edit]

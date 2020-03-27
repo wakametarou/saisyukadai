@@ -9,7 +9,7 @@ ja:
         item_images: 写真
         name: 商品名
         detail: 商品説明
-        category_id: カテゴリー
+        item_category_id: カテゴリー
         condition: 状態
         delivery_tax_payer: 負担者
         delivery_from: 発送地域

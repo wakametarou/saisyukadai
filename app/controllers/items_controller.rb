@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
-
+  before_action :set_item, except: [:index,:new,:create,:destroy,:get_category_children,:get_category_grandchildren]
+  
   def index
 
     @items = Item.all.includes(:item_images)
@@ -9,11 +10,21 @@ class ItemsController < ApplicationController
   def new
     @item = Item.new
     @item.item_images.new
+    @item_category = ItemCategory.where(ancestry: nil)
+  end
+
+  def get_category_children
+    @category_children = ItemCategory.find("#{params[:parent_name]}").children
+  end
+
+  def get_category_grandchildren
+    @category_grandchildren = ItemCategory.find("#{params[:child_id]}").children
   end
 
   def create
     @item = Item.new(item_params)
-    if @item.save
+    @item_category = ItemCategory.where(ancestry: nil)
+    if @item.save!
       redirect_to root_path
     else
       render :new
@@ -44,10 +55,12 @@ class ItemsController < ApplicationController
 
   def edit
     @item = Item.find(params[:id])
+    @item_category = ItemCategory.where(ancestry: nil)
   end
 
   def update
     @item = Item.find(params[:id])
+    @item_category = ItemCategory.where(ancestry: nil)
     if (@item.update(item_params))
       redirect_to item_path(params[:id])
     else
@@ -57,8 +70,9 @@ class ItemsController < ApplicationController
 
   private
 
+
   def item_params
-    params.require(:item).permit(:name, :price, :detail, :condition, :delivery_tax_payer, :delivery_from, :delivery_days, :category_id, :brand, item_images_attributes: [:image, :_destroy, :id]).merge(user_id: current_user.id)
+    params.require(:item).permit(:name, :price, :detail, :condition, :delivery_tax_payer, :delivery_from, :delivery_days, :brand, :item_category_id, item_images_attributes: [:image, :_destroy, :id]).merge(user_id: current_user.id)
   end
 
   def set_item

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_18_100204) do
+ActiveRecord::Schema.define(version: 2020_03_26_075825) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "sendfirst_name", null: false
@@ -50,11 +50,10 @@ ActiveRecord::Schema.define(version: 2020_03_18_100204) do
 
   create_table "item_categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
-    t.bigint "item_id"
     t.string "ancestry"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["item_id"], name: "index_item_categories_on_item_id"
+    t.index ["ancestry"], name: "index_item_categories_on_ancestry"
     t.index ["name"], name: "index_item_categories_on_name"
   end
 
@@ -74,11 +73,12 @@ ActiveRecord::Schema.define(version: 2020_03_18_100204) do
     t.string "delivery_tax_payer", null: false
     t.string "delivery_from", null: false
     t.string "delivery_days", null: false
-    t.string "category_id", null: false
     t.string "brand"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "item_category_id"
+    t.index ["item_category_id"], name: "index_items_on_item_category_id"
     t.index ["name"], name: "index_items_on_name"
     t.index ["user_id"], name: "index_items_on_user_id"
   end
@@ -104,11 +104,11 @@ ActiveRecord::Schema.define(version: 2020_03_18_100204) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.string "first_name", null: false
-    t.string "last_name", null: false
-    t.string "first_name_kana", null: false
-    t.string "last_name_kana", null: false
-    t.date "birthday", null: false
+    t.string "first_name"
+    t.string "last_name"
+    t.string "first_name_kana"
+    t.string "last_name_kana"
+    t.date "birthday"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
@@ -118,8 +118,8 @@ ActiveRecord::Schema.define(version: 2020_03_18_100204) do
   add_foreign_key "addresses", "users"
   add_foreign_key "dealings", "items"
   add_foreign_key "dealings", "users"
-  add_foreign_key "item_categories", "items"
   add_foreign_key "item_images", "items"
+  add_foreign_key "items", "item_categories"
   add_foreign_key "items", "users"
   add_foreign_key "profiles", "users"
 end

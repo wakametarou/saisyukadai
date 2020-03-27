@@ -88,7 +88,7 @@
       %li.detail
         = @item.user[:nickname]
       %li.detail
-        = @item.category_id
+        = "#{@item.item_category.parent.parent.name} ＞ #{@item.item_category.parent.name} ＞ #{@item.item_category.name}"
       %li.detail
         - if (@item.brand != nil)
           = @item.brand

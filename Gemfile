@@ -83,3 +83,5 @@ gem 'payjp'
 gem 'jquery-rails'
 gem 'dotenv-rails'
 gem 'rails-i18n'
+gem 'ancestry'
+
