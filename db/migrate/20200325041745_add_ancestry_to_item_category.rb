@@ -1,7 +1,11 @@
 class AddAncestryToItemCategory < ActiveRecord::Migration[5.2]
   def change
-    remove_reference :item_categories, :item, foreign_key: true
-
+    remove_column :items, :category_id
+    create_table :item_categories do |t|
+      t.string :name, null: false
+      t.timestamps
+    end
+    add_column :item_categories, :ancestry, :string
     add_index :item_categories, :ancestry
   end
   def down
