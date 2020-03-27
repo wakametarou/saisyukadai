@@ -125,7 +125,7 @@
   = form_with(url: "#", local: true, method: :get, class: "form_style") do |form|
     = form.text_area :text, placeholder: "コメントを入力してください", class: "text_style"
     = form.submit "コメントする", class: "btn_style"
-- if (current_user.id != @item.user_id)
+- if (user_signed_in? == false || current_user.id != @item.user_id)
   .footer
     - if (@item.id - 1 != 0)
       .flont_item
