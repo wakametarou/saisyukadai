@@ -8,6 +8,7 @@ class ItemsController < ApplicationController
   end
 
   def new
+    redirect_to root_path unless user_signed_in?
     @item = Item.new
     @item.item_images.new
     @item_category = ItemCategory.where(ancestry: nil)
@@ -33,7 +34,9 @@ class ItemsController < ApplicationController
 
   def show
     set_item
-    @card = Card.where(user_id: current_user.id).first
+    if (user_signed_in?)
+      @card = Card.where(user_id: current_user.id).first
+    end
 
     respond_to do |format|
       format.json
