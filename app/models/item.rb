@@ -15,7 +15,7 @@ class Item < ApplicationRecord
 
   validates :detail, presence: true,length: { maximum: 1000 }
 
-  validates :condition, :delivery_tax_payer, :delivery_from, :delivery_days, presence: {message: "を選択してください"}
+  validates :item_category_id, :condition, :delivery_tax_payer, :delivery_from, :delivery_days, presence: {message: "を選択してください"}
  
   validates :price, presence: true,numericality: { only_integer: true,greater_than: 299, less_than: 10000000}
 end

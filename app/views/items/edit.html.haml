@@ -51,17 +51,22 @@
       .item_detail
         .item_setumei
           商品の詳細
-        .item_detail__category.bold
-          .item_name__label
-            カテゴリー
-            %span.require
-              必須
-          %br
-          = f.select :category_id, ['レディース','メンズ','ベビー・キッズ','インテリア・住まい・小物','本・音楽・ゲーム','おもちゃ・ホビー・グッズ','コスメ・香水・美容','家電・スマホ・カメラ','スポーツ・レジャー','ハンドメイド','チケット','自動車・オートバイ','その他'], {include_blank: '選択してください'}
-          .item_name__label
-            ブランド
-            %span.any
-              任意
+        .listing-item-detail__category.bold
+          = f.label 'カテゴリー', class: 'listing-default__label'
+          %span.require 必須
+          .listing-select-wrapper
+            .listing-select-wrapper__box
+              = f.select :item_category_id, options_for_select(@item_category.map {|n| [n.name,n.id]}, @item.item_category.parent.parent.id), {include_blank: '選択してください'}, {class: 'listing-select-wrapper__box--select', id: 'parent_category'}
+          .listing-select-wrapper__added#children_wrapper
+            .listing-select-wrapper__box
+              = f.select :item_category_id, options_for_select(@item.item_category.parent.siblings.map {|n| [n.name,n.id]}, @item.item_category.parent.id), {include_blank: '選択してください'}, {class: 'listing-select-wrapper__box--select', id: 'child_category'}
+          .listing-select-wrapper__added#grandchildren_wrapper
+            .listing-select-wrapper__box
+              = f.select :item_category_id, options_for_select(@item.item_category.siblings.map {|n| [n.name,n.id]}, @item.item_category.id), {include_blank: '選択してください'}, {class: 'listing-select-wrapper__box--select', id: 'grandchild_category'}
+        .item_name__label.bold
+          ブランド
+          %span.any
+            任意
           %br
           = f.text_field :brand
         .item_detail__condition.bold

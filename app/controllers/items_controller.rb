@@ -55,10 +55,12 @@ class ItemsController < ApplicationController
 
   def edit
     @item = Item.find(params[:id])
+    @item_category = ItemCategory.where(ancestry: nil)
   end
 
   def update
     @item = Item.find(params[:id])
+    @item_category = ItemCategory.where(ancestry: nil)
     if (@item.update(item_params))
       redirect_to item_path(params[:id])
     else
