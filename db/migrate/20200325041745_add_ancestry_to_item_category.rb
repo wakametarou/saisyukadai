@@ -1,6 +1,6 @@
 class AddAncestryToItemCategory < ActiveRecord::Migration[5.2]
   def change
-    remove_column :items, :category_id
+    # remove_column :items, :category_id
   end
   def down
     remove_index :item_categories, :ancestry
